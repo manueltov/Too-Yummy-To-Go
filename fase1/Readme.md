@@ -74,6 +74,7 @@ Todos os dias são enviados para o lixo ([1]) imensos produtos perecíveis de lo
 Esta aplicação deverá permitir que os utilizadores criem conta e façam login, bem como pesquisem que comerciantes existem, e encomendar vários produtos desse comerciante para apanhar mais tarde. Cabe aos comerciantes confirmarem que entregaram a encomenda de cada utilizador no momento da recolha.
 
 [1] Felizmente existe o programa [Re:food](https://www.re-food.org/pt), mas só resolve o problema do desperdício, não da rentabilidade do lado dos comerciantes.
+
 [2] Qualquer semelhança desta ideia com a aplicação [Too Good to Go](https://toogoodtogo.pt/pt) não é pura coincidência.
 
 

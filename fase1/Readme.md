@@ -119,9 +119,9 @@ UC5 - Colocar produto à venda
 
 **Extensões:**
 
-3a. Se o código do tipo de produto não existir:
-	3.1 O sistema prossegue com a realização do caso de uso UC4. 
-	3.2 O caso de uso continua a partir do ponto 3.
+- 3a. Se o código do tipo de produto não existir:
+	- 3.1 O sistema prossegue com a realização do caso de uso UC4. 
+	- 3.2 O caso de uso continua a partir do ponto 3.
 
 UC6 - Listar Comerciantes com Produtos Disponíveis
 ==================================================
@@ -135,7 +135,7 @@ UC6 - Listar Comerciantes com Produtos Disponíveis
 **Cenário Principal (ou _Happy Path_):**
 
 1. O utilizador indica ao sistema a sua localização actual.
-2. O sistema responde ao utilizador com a lista de comerciantes num raio de 5km que tenham produtos para recolha neste momento.
+2. O sistema responde ao utilizador com a lista de comerciantes num raio de 5km que tenham produtos para recolha durante a próxima hora.
 3. Opcionalmente, o utilizador pode definir um outro raio no qual está disposto a recolher produtos.
 4. Nesse caso, o sistema responde ao utilizador com uma lista mais (ou menos) refinada.
 5. Opcionalmente, o utilizador poderá definir um período em que está disponível para recolha.
@@ -147,9 +147,9 @@ UC7 - Encomendar Produtos
 
 **Actor Principal:** Utilizador
 
-**Pré-condição:** Existe um utilizador autenticado e uma janela temporal definida
+**Pré-condição:** Existe um utilizador autenticado
 
-**Pós-condição:** n/a
+**Pós-condição:** Se o caso de uso tiver sucesso, existe mais uma reserva no sistema.
 
 **Cenário Principal (ou _Happy Path_):**
 
@@ -163,9 +163,9 @@ UC7 - Encomendar Produtos
 
 **Extensões:**
 
-4a. Se a quantidade pretendida pelo utilizador for superior à disponibilizada pelo comerciante:
-	4.1. O sistema indica ao utilizador a quantidade de produtos disponível para encomenda.
-	4.2. O caso de uso prossegue a partir do ponto 4.
+- 4a. Se a quantidade pretendida pelo utilizador for superior à disponibilizada pelo comerciante:
+	- 4.1. O sistema indica ao utilizador a quantidade de produtos disponível para encomenda.
+	- 4.2. O caso de uso prossegue a partir do ponto 4.
 
 UC8 - Confirmar recolha de reserva
 ==================================

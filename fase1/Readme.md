@@ -53,7 +53,7 @@ suspensão letiva ou abandono da Universidade.
 Objectivo
 ---------
 
-Nesta primeira meta pretendemos fazer a fase de análise, em que vamos
+Nesta primeira meta estaremos focados na fase de análise, em que vamos
 organizar o que o cliente nos transmite. Felizmente, o levantamento de casos
 de uso já foi feito, e iremos trabalhar sobre eles.
 
@@ -61,7 +61,7 @@ Nesta primeira meta pretende-se que os alunos entreguem:
 
 * Diagrama de Casos de Uso
 * Modelo de Domínio
-* SSD e contractos para os seguintes casos de uso: 1, 2 e 4.
+* SSD e contractos para os seguintes casos de uso: 5, 6 e 7.
 
 De seguida apresenta-se uma vista geral da aplicação e a descrição dos casos de uso:
 
@@ -71,7 +71,7 @@ Descrição geral do Too Yummy To Go:
 
 Todos os dias são enviados para o lixo ([1]) imensos produtos perecíveis de lojas como mercearias, restaurantes ou padarias. Pretende-se desenvolver uma aplicação que permita aos comerciantes colocar conjuntos de produtos para venda ao final do dia a um preço mais interessante para os consumidores [2].
 
-Esta aplicação deverá permitir que os utilizadores criem conta e façam login, bem como pesquisem que comerciantes existem, e encomendar vários produtos desse comerciante para apanhar mais tarde. Cabe aos comerciantes confirmarem que entregaram a encomenda de cada utilizador no momento da recolha.
+Esta aplicação deverá permitir que os utilizadores criem conta e façam login, bem como pesquisem que comerciantes existem, e encomendar vários produtos desse comerciante para recolher mais tarde. Cabe aos comerciantes confirmarem que entregaram a encomenda de cada utilizador no momento da recolha.
 
 [1] Felizmente existe o programa [Re:food](https://www.re-food.org/pt), mas só resolve o problema do desperdício, não da rentabilidade do lado dos comerciantes.
 
@@ -107,7 +107,7 @@ UC5 - Colocar produto à venda
 
 **Pré-condição:** Existe um comerciante autenticado
 
-**Pós-condição:** Se os dados estiverem sido introduzidos correctamente, existem mais produtos disponíveis associados ao comerciante em questão.
+**Pós-condição:** Se os dados tiverem sido introduzidos correctamente, existem mais produtos disponíveis associados ao comerciante em questão.
 
 **Cenário Principal (ou _Happy Path_):**
 
@@ -119,7 +119,7 @@ UC5 - Colocar produto à venda
 
 **Extensões:**
 
-3a. Se o código do tipo de produto não existir, o sistema indicar que não está disponível e o comerciante terá de tentar outra vez.
+3a. Se o código do tipo de produto não existir, o sistema indica que não está disponível e o comerciante terá de tentar outra vez.
 
 UC6 - Listar Comerciantes com Produtos Disponíveis
 ==================================================
@@ -134,7 +134,7 @@ UC6 - Listar Comerciantes com Produtos Disponíveis
 
 1. O utilizador indica ao sistema a sua localização actual.
 2. O sistema responde ao utilizador com a lista de comerciantes num raio de 5km que tenham produtos para recolha neste momento.
-3. Opcionalmente, o utilizador pode definir um outro raio para o qual está disponível a recolher produtos.
+3. Opcionalmente, o utilizador pode definir um outro raio no qual está disposto a recolher produtos.
 4. Nesse caso, o sistema responde ao utilizador com uma lista mais (ou menos) refinada.
 5. Opcionalmente, o utilizador poderá definir um período em que está disponível para recolha.
 6. Nesse caso, o sistema indica uma lista de comerciantes que tenham produtos disponíveis em janelas temporais que se sobreponham com aquela indicada pelo utilizador.

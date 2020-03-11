@@ -98,7 +98,7 @@ _(Foi deixado para uma segunda iteração)_
 UC4 - Adicionar Tipo de Produto
 ===============================
 
-Descrição breve: Um comerciante deverá poder adicionar um novo tipo de produto, indicando o código, o nome e os ingredientes.
+Descrição breve: Um comerciante deverá poder adicionar um novo tipo de produto, indicando o nome e os ingredientes. O sistema regista o tipo de produto e gera um código.
 
 UC5 - Colocar produto à venda
 ==================================
@@ -111,15 +111,17 @@ UC5 - Colocar produto à venda
 
 **Cenário Principal (ou _Happy Path_):**
 
-1. O comerciante indica ao sistema que pretende iniciar uma nova campanha.
+1. O comerciante indica ao sistema que pretende disponibilizar produtos para venda no dia corrente.
 2. O sistema responde com a lista de tipos de produtos associadas a esse comerciante.
-3. O comerciante indica que quer disponibilizar um tipo de produto, indicando a quantidade desse tipo de produto.
+3. O comerciante indica que quer disponibilizar um tipo de produto, indicando o código e a quantidade desse tipo de produto.
 	* Este passo pode ser repetido tantas vezes quantas o comerciante pretender.
-4. O comerciante finaliza a campanha, indicando o horário de inicio e fim da recolha desses produtos.
+4. O comerciante confirma a disponibilidade dos produtos para venda, indicando o horário de inicio e fim da recolha desses produtos.
 
 **Extensões:**
 
-3a. Se o código do tipo de produto não existir, o sistema indica que não está disponível e o comerciante terá de tentar outra vez.
+3a. Se o código do tipo de produto não existir:
+	3.1 O sistema prossegue com a realização do caso de uso UC4. 
+	3.2 O caso de uso continua a partir do ponto 3.
 
 UC6 - Listar Comerciantes com Produtos Disponíveis
 ==================================================
@@ -152,12 +154,18 @@ UC7 - Encomendar Produtos
 **Cenário Principal (ou _Happy Path_):**
 
 1. Este caso de uso começa pela realização do caso de uso 6.
-2. O utilizador indica ao sistema que comerciante pretende visitar
-3. O sistema responde com a lista de produtos que esse comerciante tem disponível na janela temporal em questão (definida no UC6).
+2. O utilizador indica ao sistema que comerciante pretende visitar.
+3. O sistema responde com a lista de produtos que esse comerciante tem disponível na janela temporal definida.
 4. O utilizador indica que pretende incluir na sua compra um produto, indicando também a quantidade em questão.
 	* Este passo pode ser repetido várias vezes.
 5. O utilizador indica que pretende pagar todos os produtos entretanto adicionados, indicando os detalhes do seu cartão de crédito.
 6. O sistema indica que a compra foi feita com sucesso, indicando o código da reserva ao utilizador.
+
+**Extensões:**
+
+4a. Se a quantidade pretendida pelo utilizador for superior à disponibilizada pelo comerciante:
+	4.1. O sistema indica ao utilizador a quantidade de produtos disponível para encomenda.
+	4.2. O caso de uso prossegue a partir do ponto 4.
 
 UC8 - Confirmar recolha de reserva
 ==================================

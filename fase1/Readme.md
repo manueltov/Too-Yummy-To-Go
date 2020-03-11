@@ -5,7 +5,7 @@ Too Yummi To Go - Meta 1
 
 **Equipa:** O trabalho deve ser feito em grupos de 3. Excepcionalmente serão aceites grupos de 2.
 
-**Dúvidas:** Dúvidas sobre o trabalho, bem como outras discussões como procura de elementos de grupo deverão ser feitas [neste endereço](https://git.alunos.di.fc.ul.pt/dco0001/dco_1920/issues).
+**Dúvidas:** Dúvidas sobre o trabalho, bem como outras discussões como procura de elementos de grupo deverão ser feitas [nos issues do repositório da cadeira de DCO](https://git.alunos.di.fc.ul.pt/dco0001/dco_1920/issues).
 
 **Instruções:** 
 
@@ -61,7 +61,7 @@ Nesta primeira meta pretende-se que os alunos entreguem:
 
 * Diagrama de Casos de Uso
 * Modelo de Domínio
-* SSD e contractos para os seguintes casos de uso: 5, 6 e 7.
+* SSD e contratos para os seguintes casos de uso: 5, 6 e 7.
 
 De seguida apresenta-se uma vista geral da aplicação e a descrição dos casos de uso:
 
@@ -73,7 +73,7 @@ Todos os dias são enviados para o lixo ([1]) imensos produtos perecíveis de lo
 
 Esta aplicação deverá permitir que os utilizadores criem conta e façam login, bem como pesquisem que comerciantes existem, e encomendar vários produtos desse comerciante para recolher mais tarde. Cabe aos comerciantes confirmarem que entregaram a encomenda de cada utilizador no momento da recolha.
 
-[1] Felizmente existe o programa [Re:food](https://www.re-food.org/pt), mas só resolve o problema do desperdício, não da rentabilidade do lado dos comerciantes.
+[1] Felizmente existem programa como o [Re:food](https://www.re-food.org/pt) ou o [Fruta Feia](https://frutafeia.pt).
 
 [2] Qualquer semelhança desta ideia com a aplicação [Too Good to Go](https://toogoodtogo.pt/pt) não é pura coincidência.
 

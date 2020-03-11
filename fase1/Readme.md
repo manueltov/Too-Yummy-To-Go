@@ -141,6 +141,11 @@ UC6 - Listar Comerciantes com Produtos Disponíveis
 5. Opcionalmente, o utilizador poderá definir um período em que está disponível para recolha.
 6. Nesse caso, o sistema indica uma lista de comerciantes que tenham produtos disponíveis em janelas temporais que se sobreponham com aquela indicada pelo utilizador.
 
+**Extensões:**
+
+3a. Se não existirem comerciantes no raio definido pelo utilizador:
+	1. O sistema informa o utilizador.
+	2. O caso de uso continua a partir do ponto 3.
 
 UC7 - Encomendar Produtos
 =========================

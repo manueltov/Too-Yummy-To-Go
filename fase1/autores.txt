@@ -1,14 +1,14 @@
 UC1:
-    Número do aluno:
-    Nome do aluno:
+    Número do aluno:  46671
+    Nome do aluno:  Samuel Conde
     Horas gastas:
     
 UC2:
-    Número do aluno:
-    Nome do aluno:
+    Número do aluno:  49522
+    Nome do aluno:  Manuel  Tovar
     Horas gastas:
-    
+
 UC4:
-    Número do aluno:
-    Nome do aluno:
+    Número do aluno:  51302
+    Nome do aluno:  Miguel Vasconcelos
     Horas gastas:

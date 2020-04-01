@@ -11,7 +11,7 @@ Too Yummi To Go - Meta 2
 **Instruções de como começar:** No repositório local da meta 1 deverá executar os seguintes comandos para obter a última versão:
 
 ```
-git remote add enunciado https://git.alunos.di.fc.ul.pt/fc53314/too-yummy-to-go.git
+git remote add enunciado https://git.alunos.di.fc.ul.pt/dco0001/too-yummy-to-go.git
 git pull enunciado master
 ```
 

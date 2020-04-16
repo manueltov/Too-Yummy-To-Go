@@ -1,4 +1,4 @@
-Too Yummi To Go - Meta 1
+Too Yummy To Go - Meta 1
 ========================
 
 **Deadline:** 25 de Março de 2020, 23:55, Hora de Lisboa

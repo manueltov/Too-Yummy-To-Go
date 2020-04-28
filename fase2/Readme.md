@@ -1,8 +1,8 @@
-Too Yummi To Go - Meta 2
+Too Yummy To Go - Meta 2
 ========================
 
 
-**Deadline:** 15 de Abril de 2019, 23:55, Hora de Lisboa
+**Deadline:** 15 de Abril de 2020, 23:55, Hora de Lisboa
 
 **Equipa:** O trabalho deve ser feito em grupos de 3. Excepcionalmente serão aceites grupos de 2.
 

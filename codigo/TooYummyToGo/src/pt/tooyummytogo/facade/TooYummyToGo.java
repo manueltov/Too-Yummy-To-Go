@@ -3,6 +3,7 @@ package pt.tooyummytogo.facade;
 import java.util.Optional;
 
 import pt.tooyummytogo.Sessao;
+import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.UserCatalog;
 import pt.tooyummytogo.facade.handlers.RegistarComercianteHandler;
 import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
@@ -13,7 +14,7 @@ import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
 public class TooYummyToGo {
 
 	private UserCatalog userCat = new UserCatalog();
-	//private MerchantCatalog merchCat = new MerchantCatalog();
+	private MerchantCatalog merchCat = new MerchantCatalog();
 	//private ProductCatalog prodCat = new ProductCatalog();
 
 	// UC1
@@ -35,7 +36,7 @@ public class TooYummyToGo {
 
 	// UC3
 	public RegistarComercianteHandler getRegistarComercianteHandler() {
-		return new RegistarComercianteHandler();
+		return new RegistarComercianteHandler(merchCat);
 	}
 	
 

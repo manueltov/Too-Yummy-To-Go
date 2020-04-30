@@ -23,7 +23,7 @@ Extra 1: API MonsterCard
 1) Exemplo do uso da API para verificar a validade de um cartão:
 
 ```java
-Card c = new Card(“1234123412341234”, “123”, “05”, “18”); MonsterCardAPI m = new MonsterCardAPI();
+Card c = new Card("1234123412341234", "123", "05", "18"); MonsterCardAPI m = new MonsterCardAPI();
 boolean ok = m.isValid(c);
 ```
 
@@ -46,7 +46,7 @@ Extra 2: API PortugueseExpress
 1) Exemplo do uso da API para verificar a validade de um cartão:
 ```java
 PortugueseExpress api = new PortugueseExpress();
-api.setNumber(“1234123412341234”)
+api.setNumber("1234123412341234")
 api.setCcv(123)
 api.setMonth(5)
 api.setYear(2018)

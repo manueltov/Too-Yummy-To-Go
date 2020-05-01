@@ -6,8 +6,8 @@ public class RegistarUtilizadorHandler {
 	
 	private UserCatalog userCat;
 	
-	public RegistarUtilizadorHandler(UserCatalog userCat) {
-		this.userCat = userCat;
+	public RegistarUtilizadorHandler() {
+		this.userCat = new UserCatalog();
 	}
 
 	/**

@@ -12,13 +12,12 @@ public class UserCatalog {
 	}
 	
 	public Optional<User> tryLogin(String user, String password) {
-		/*
-		if (utilizadores.containsKey(user) && utilizadores.get(user).hasPassword(pw)) {
-			return Optional.of(utilizadores.get(user));
+		if (this.userCat.containsKey(user) && this.userCat.get(user).hasPassword(password)) {
+			return Optional.of(this.userCat.get(user));
 		} else {
 			return Optional.empty();
 		}
-		*/
-		return Optional.ofNullable(userCat.get(user)).filter(u -> u.hasPassword(password));
+		
+		//return Optional.ofNullable(userCat.get(user)).filter(u -> u.hasPassword(password));
 	}
 }

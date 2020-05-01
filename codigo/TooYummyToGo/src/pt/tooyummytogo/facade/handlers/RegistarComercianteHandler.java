@@ -7,8 +7,8 @@ public class RegistarComercianteHandler {
 	
 	private MerchantCatalog merchCat;
 	
-	public RegistarComercianteHandler(MerchantCatalog merchCat) {
-		this.merchCat = merchCat;
+	public RegistarComercianteHandler() {
+		this.merchCat = new MerchantCatalog();
 	}
 
 	/**

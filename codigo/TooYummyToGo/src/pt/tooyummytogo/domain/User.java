@@ -11,8 +11,7 @@ public class User {
 	}
 
 	public boolean hasPassword(String password2) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.password==password2;
 	}
 
 }

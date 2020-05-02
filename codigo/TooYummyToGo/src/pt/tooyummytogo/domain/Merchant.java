@@ -4,14 +4,13 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class Merchant {
 
-	private String username;
-	private String password;
+	private User user;
 	private PosicaoCoordenadas p;
 	
-	public Merchant(String username, String password, PosicaoCoordenadas p) {
-		this.username = username;
-		this.password = password;
+	public Merchant(User user, PosicaoCoordenadas p) {
+		this.user = user;
 		this.p = p;
 	}
+	
 
 }

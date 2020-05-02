@@ -7,10 +7,10 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class MerchantCatalog {
 	
-	private List<Merchant> merchantList = new ArrayList<>();
-	
-	public void adicionaMerchant (String username, String password, PosicaoCoordenadas p) {
-		merchantList.add(new Merchant(username, password, p));
+	private static List<Merchant> merchantList = new ArrayList<>();
+
+	public static void adicionaMerchant(String username, String password, PosicaoCoordenadas p) {
+		merchantList.add(new Merchant(new User(username, password), p));
 	}
 	
 }

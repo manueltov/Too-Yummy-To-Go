@@ -5,8 +5,7 @@ import pt.tooyummytogo.facade.handlers.ColocarProdutoHandler;
 import pt.tooyummytogo.facade.handlers.EncomendarHandler;
 
 public class Sessao {
-
-
+	
 	// UC4
 	public AdicionarTipoDeProdutoHandler adicionarTipoDeProdutoHandler() {
 		// TODO Auto-generated method stub

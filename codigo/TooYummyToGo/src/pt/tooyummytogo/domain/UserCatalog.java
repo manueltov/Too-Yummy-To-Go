@@ -1,23 +1,24 @@
 package pt.tooyummytogo.domain;
 
 import java.util.HashMap;
-import java.util.Optional;
 
 public class UserCatalog {
 	
-	private HashMap<String, User> userCat = new HashMap<>();
-	
-	public void adicionaUtilizador (String username, String password) {
+	private static HashMap<String, User> userCat;
+
+	public UserCatalog() {
+		userCat = new HashMap<>();
+	}
+
+	public static void adicionaUtilizador(String username, String password) {
 		userCat.put(username, new User(username, password));
 	}
 	
-	public Optional<User> tryLogin(String user, String password) {
-		if (this.userCat.containsKey(user) && this.userCat.get(user).hasPassword(password)) {
-			return Optional.of(this.userCat.get(user));
+	public Boolean tryLogin(String user, String password) {
+		if (UserCatalog.userCat.containsKey(user) && UserCatalog.userCat.get(user).hasPassword(password)) {
+			return true;
 		} else {
-			return Optional.empty();
+			return false;
 		}
-		
-		//return Optional.ofNullable(userCat.get(user)).filter(u -> u.hasPassword(password));
 	}
 }

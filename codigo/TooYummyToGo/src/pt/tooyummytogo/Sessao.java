@@ -8,18 +8,15 @@ public class Sessao {
 	
 	// UC4
 	public AdicionarTipoDeProdutoHandler adicionarTipoDeProdutoHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return new AdicionarTipoDeProdutoHandler();
 	}
 
 	// UC5
 	public ColocarProdutoHandler getColocarProdutoHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ColocarProdutoHandler();
 	}
 
 	public EncomendarHandler getEncomendarComerciantesHandler() {
-		// TODO Auto-generated method stub
-		return null;
+		return new EncomendarHandler();
 	}
 }

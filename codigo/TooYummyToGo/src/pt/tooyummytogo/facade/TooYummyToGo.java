@@ -11,11 +11,11 @@ import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
  * Esta é a classe do sistema.
  */
 public class TooYummyToGo {
-	private UserCatalog usrCat = new UserCatalog();
+	private UserCatalog userCat = new UserCatalog();
 
 	// UC1
 	public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
-		return new RegistarUtilizadorHandler();
+		return new RegistarUtilizadorHandler(userCat);
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class TooYummyToGo {
 	 * UC2
 	 */
 	public Optional<Sessao> autenticar(String username, String password) {
-		if(usrCat.tryLogin(username, password)){
+		if(userCat.tryLogin(username, password)){
 			return Optional.of(new Sessao());
 		}
 		else{

@@ -10,12 +10,12 @@ public class UserCatalog {
 		userCat = new HashMap<>();
 	}
 
-	public static void adicionaUtilizador(String username, String password) {
+	public void adicionaUtilizador(String username, String password) {
 		userCat.put(username, new User(username, password));
 	}
 	
-	public Boolean tryLogin(String user, String password) {
-		if (UserCatalog.userCat.containsKey(user) && UserCatalog.userCat.get(user).hasPassword(password)) {
+	public Boolean tryLogin(String username, String password) {
+		if (UserCatalog.userCat.containsKey(username) && UserCatalog.userCat.get(username).hasPassword(password)) {
 			return true;
 		} else {
 			return false;

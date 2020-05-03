@@ -28,7 +28,7 @@ public class TooYummyToGo {
 	 */
 	public Optional<Sessao> autenticar(String username, String password) {
 		if(usrCat.tryLogin(username, password)){
-			return Optional.of(new Sessao());
+			return Optional.of(new Sessao(username));
 		}
 		else{
 			return Optional.empty();

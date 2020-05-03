@@ -10,7 +10,7 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean hasPassword(String password2) {
+	public boolean confirmPassword(String password2) {
 		return this.password==password2;
 	}
 

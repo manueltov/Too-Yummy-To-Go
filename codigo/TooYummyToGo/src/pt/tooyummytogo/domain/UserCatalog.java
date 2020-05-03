@@ -15,10 +15,6 @@ public class UserCatalog {
 	}
 	
 	public Boolean tryLogin(String user, String password) {
-		if (UserCatalog.userCat.containsKey(user) && UserCatalog.userCat.get(user).hasPassword(password)) {
-			return true;
-		} else {
-			return false;
-		}
+		return userCat.containsKey(user) && userCat.get(user).confirmPassword(password);
 	}
 }

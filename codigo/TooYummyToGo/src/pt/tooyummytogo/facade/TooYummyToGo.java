@@ -3,6 +3,7 @@ package pt.tooyummytogo.facade;
 import java.util.Optional;
 
 import pt.tooyummytogo.Sessao;
+import pt.tooyummytogo.domain.User;
 import pt.tooyummytogo.domain.UserCatalog;
 import pt.tooyummytogo.facade.handlers.RegistarComercianteHandler;
 import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
@@ -11,7 +12,7 @@ import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
  * Esta é a classe do sistema.
  */
 public class TooYummyToGo {
-	private UserCatalog usrCat = new UserCatalog();
+	private UserCatalog userCat = new UserCatalog();
 
 	// UC1
 	public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
@@ -27,8 +28,9 @@ public class TooYummyToGo {
 	 * UC2
 	 */
 	public Optional<Sessao> autenticar(String username, String password) {
-		if(usrCat.tryLogin(username, password)){
-			return Optional.of(new Sessao(username));
+		Optional<User> currentUser = userCat.tryLogin(username, password);
+		if(currentUser.isPresent()){
+			return Optional.of(new Sessao(currentUser.get()));
 		}
 		else{
 			return Optional.empty();

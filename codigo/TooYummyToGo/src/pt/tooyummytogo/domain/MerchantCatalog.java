@@ -13,4 +13,12 @@ public class MerchantCatalog {
 		merchantList.add(new Merchant(new User(username, password), p));
 	}
 	
+	public static Merchant getMerchant(User user) {
+		for (Merchant merch : merchantList) {
+			if(merch.getUser() == user)
+				return merch;
+		}
+		return null; //return exception Merchant does not exist
+	}
+	
 }

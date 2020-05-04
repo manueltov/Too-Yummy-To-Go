@@ -23,7 +23,7 @@ Extra 1: API MonsterCard
 1) Exemplo do uso da API para verificar a validade de um cartão:
 
 ```java
-Card c = new Card("1234123412341234", "123", "05", "18");
+Card c = new Card("1234123412341234", "123", "05", "2021");
 MonsterCardAPI m = new MonsterCardAPI();
 boolean ok = m.isValid(c);
 ```

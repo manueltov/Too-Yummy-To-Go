@@ -6,10 +6,9 @@ import pt.tooyummytogo.domain.User;
 
 public class AdicionarTipoDeProdutoHandler {
 
-	private Merchant currentMerchant;
-	
-	public AdicionarTipoDeProdutoHandler(User currentUser) {
-		this.currentMerchant = MerchantCatalog.getMerchant(currentUser);
+	public void registaTipoDeProduto(String tp, double d) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public int registaTipoDeProduto(String tp) {

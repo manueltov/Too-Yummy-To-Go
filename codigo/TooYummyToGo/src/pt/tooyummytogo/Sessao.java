@@ -1,7 +1,6 @@
 package pt.tooyummytogo;
 
 import pt.tooyummytogo.domain.User;
-import pt.tooyummytogo.exceptions.OnlyMerchantsCanAddProductsException;
 import pt.tooyummytogo.facade.handlers.AdicionarTipoDeProdutoHandler;
 import pt.tooyummytogo.facade.handlers.ColocarProdutoHandler;
 import pt.tooyummytogo.facade.handlers.EncomendarHandler;
@@ -12,16 +11,13 @@ public class Sessao {
 	
 	public Sessao(User currentUser) {
 		this.currentUser = currentUser; //ver o q se passa aqui
+		///////// so pra debbug /////////////////////////////
+		System.out.println("o " + currentUser.getUsername() + " ja entrou na sua sessao");
 	}
 
 	// UC4
 	public AdicionarTipoDeProdutoHandler adicionarTipoDeProdutoHandler() {
-		try {
-			return new AdicionarTipoDeProdutoHandler(this.currentUser);
-		} catch (OnlyMerchantsCanAddProductsException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return new AdicionarTipoDeProdutoHandler(this.currentUser);
 	}
 
 	// UC5

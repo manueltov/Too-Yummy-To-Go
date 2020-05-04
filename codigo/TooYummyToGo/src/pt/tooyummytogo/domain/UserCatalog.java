@@ -11,13 +11,14 @@ public class UserCatalog {
 		userCat = new HashMap<>();
 	}
 
-	public void adicionaUtilizador(String username, String password, UserType userType) {
-		userCat.put(username, new User(username, password, userType));
-		System.out.println("so pra dizer  q o " + userType.toString() + " chamdo " + username + " foi adiconado.");
+	public void adicionaUtilizador(String username, String password) {
+		userCat.put(username, new User(username, password));
+		///////// so pra debbug /////////////////////////////
+		System.out.println("so pra dizer  q o " + username + " foi adiconado ao cataUser.");
 	}
 	
 	public Optional<User> tryLogin(String username, String password) {
-		if (userCat.containsKey(username) && userCat.get(username).confirmPassword(password)) {
+		if (this.userCat.containsKey(username) && this.userCat.get(username).confirmPassword(password)) {
 			return Optional.of(userCat.get(username));
 		} else {
 			return Optional.empty();

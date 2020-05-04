@@ -3,6 +3,7 @@ package pt.tooyummytogo.main;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import pt.tooyummytogo.Sessao;
 import pt.tooyummytogo.facade.TooYummyToGo;
@@ -34,8 +35,9 @@ public class ClienteExemplo {
 		Optional<Sessao> talvezSessao = ty2g.autenticar("Silvino", "bardoc2");
 		talvezSessao.ifPresent( (Sessao s) -> {
 			AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
+			Random r = new Random();
 			for (String tp : new String[] {"Pão", "Pão de Ló", "Mil-folhas"}) {
-				atp.registaTipoDeProduto(tp);
+				atp.registaTipoDeProduto(tp, r.nextDouble() * 10);
 			}
 		});
 

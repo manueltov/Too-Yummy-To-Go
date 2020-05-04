@@ -21,8 +21,8 @@ public class Merchant {
 		return user;
 	}
 
-	public int addPruductType(String tp) {
-		this.lstProducts.add(new Products(tp));
+	public int addProductType(String tp, double p) {
+		this.lstProducts.add(new Products(tp, p));
 		return lstProducts.size()-1;
 	}
 	

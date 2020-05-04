@@ -5,6 +5,12 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class RegistarComercianteHandler {
 	
+	private MerchantCatalog merchCat;
+
+	public RegistarComercianteHandler(MerchantCatalog merchCat) {
+		this.merchCat = merchCat;
+	}
+
 	/**
 	 * Regista um Comerciante.
 	 * @param Username
@@ -12,7 +18,7 @@ public class RegistarComercianteHandler {
 	 * @ensures existe um comerciante com esse username
 	 */
 	public void registarComerciante(String username, String password, PosicaoCoordenadas p) {
-		MerchantCatalog.adicionaMerchant(username,password,p);
+		this.merchCat.adicionaMerchant(username,password,p);
 	}
 
 }

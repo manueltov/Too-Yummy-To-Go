@@ -11,8 +11,9 @@ public class UserCatalog {
 		userCat = new HashMap<>();
 	}
 
-	public static void adicionaUtilizador(String username, String password) {
-		userCat.put(username, new User(username, password));
+	public void adicionaUtilizador(String username, String password, UserType userType) {
+		userCat.put(username, new User(username, password, userType));
+		System.out.println("so pra dizer  q o " + userType.toString() + " chamdo " + username + " foi adiconado.");
 	}
 	
 	public Optional<User> tryLogin(String username, String password) {

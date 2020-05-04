@@ -11,7 +11,11 @@ public class User {
 	}
 
 	public boolean confirmPassword(String password2) {
-		return this.password==password2;
+		return this.password.equals(password2);
+	}
+
+	public String getUsername() {
+		return this.username;
 	}
 
 }

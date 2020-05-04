@@ -3,6 +3,7 @@ package pt.tooyummytogo.facade;
 import java.util.Optional;
 
 import pt.tooyummytogo.Sessao;
+import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.User;
 import pt.tooyummytogo.domain.UserCatalog;
 import pt.tooyummytogo.facade.handlers.RegistarComercianteHandler;
@@ -13,10 +14,11 @@ import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
  */
 public class TooYummyToGo {
 	private UserCatalog userCat = new UserCatalog();
+	private MerchantCatalog merchCat = new MerchantCatalog();
 
 	// UC1
 	public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
-		return new RegistarUtilizadorHandler();
+		return new RegistarUtilizadorHandler(userCat);
 	}
 	
 	/**
@@ -28,9 +30,14 @@ public class TooYummyToGo {
 	 * UC2
 	 */
 	public Optional<Sessao> autenticar(String username, String password) {
-		Optional<User> currentUser = userCat.tryLogin(username, password);
-		if(currentUser.isPresent()){
-			return Optional.of(new Sessao(currentUser.get()));
+		Optional<User> user = userCat.tryLogin(username, password);
+		Optional<User> merch = merchCat.tryLogin(username, password);
+		if(user.isPresent() || merch.isPresent()){
+			///////// so pra debbug /////////////////////////////
+			System.out.println("o " + username + " fez login");
+			if(user.isPresent())
+				return Optional.of(new Sessao(user.get()));
+			else return Optional.of(new Sessao(merch.get()));
 		}
 		else{
 			return Optional.empty();
@@ -39,7 +46,7 @@ public class TooYummyToGo {
 
 	// UC3
 	public RegistarComercianteHandler getRegistarComercianteHandler() {
-		return new RegistarComercianteHandler();
+		return new RegistarComercianteHandler(merchCat);
 	}
 	
 

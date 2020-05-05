@@ -5,10 +5,10 @@ import java.util.Optional;
 
 public class UserCatalog {
 	
-	private static HashMap<String, User> userCat;
+	private HashMap<String, User> userCat;
 
 	public UserCatalog() {
-		userCat = new HashMap<>();
+		this.userCat = new HashMap<>();
 	}
 
 	public void adicionaUtilizador(String username, String password) {

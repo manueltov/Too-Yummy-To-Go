@@ -10,8 +10,8 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean confirmPassword(String password2) {
-		return this.password.equals(password2);
+	public boolean confirmPassword(String pw) {
+		return this.password.equals(pw);
 	}
 
 	public String getUsername() {

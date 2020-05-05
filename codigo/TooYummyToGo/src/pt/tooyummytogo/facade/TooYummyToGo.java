@@ -32,10 +32,10 @@ public class TooYummyToGo {
 	public Optional<Sessao> autenticar(String username, String password) {
 		Optional<User> currentUser = userCat.tryLogin(username, password);
 		Optional<User> currentMerch = merchCat.tryLogin(username, password);
-		if(currentUser.isPresent()) {
-			return Optional.of(new Sessao (currentUser.get()));	
-		}else if (currentMerch.isPresent()) {
-			return Optional.of(new Sessao(currentMerch.get()));
+		if(currentMerch.isPresent()) {
+			return Optional.of(new Sessao (currentMerch.get()));	
+		}else if (currentUser.isPresent()) {
+			return Optional.of(new Sessao(currentUser.get()));
 		}else {
 			return Optional.empty();
 		}

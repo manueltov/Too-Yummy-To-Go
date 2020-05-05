@@ -8,7 +8,15 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class MerchantCatalog {
 	
-	private static List<Merchant> merchantCat = new ArrayList<>();
+	private List<Merchant> merchantCat;
+	
+	public MerchantCatalog() {
+		this.merchantCat = new ArrayList<>();
+	}
+	
+	public List<Merchant> getMerchantCatalog() {
+		return this.merchantCat;
+	}
 
 	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) {
 		merchantCat.add(new Merchant(username, password, posi));
@@ -16,7 +24,7 @@ public class MerchantCatalog {
 		System.out.println("so pra dizer  q o " + username + " foi adiconado ao cataMerchant.");
 	}
 	
-	public static Merchant getMerchant(String username) {
+	public Merchant getMerchant(String username) {
 		for (Merchant merch : merchantCat) {
 			if(merch.getUsername().equals(username))
 				return merch;

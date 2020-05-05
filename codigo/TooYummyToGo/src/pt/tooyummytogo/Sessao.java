@@ -1,6 +1,7 @@
 package pt.tooyummytogo;
 
 import pt.tooyummytogo.domain.Merchant;
+import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.User;
 import pt.tooyummytogo.facade.handlers.AdicionarTipoDeProdutoHandler;
 import pt.tooyummytogo.facade.handlers.ColocarProdutoHandler;
@@ -10,9 +11,11 @@ public class Sessao {
 	
 	private User currentUser;
 	private Merchant currentMerch;
+	private MerchantCatalog merchCat;
 	
-	public Sessao(User currentUser) {
+	public Sessao(User currentUser, MerchantCatalog merchCat) {
 		this.currentUser = currentUser; //ver o q se passa aqui
+		this.merchCat = merchCat;
 		///////// so pra debbug /////////////////////////////
 		System.out.println("o " + currentUser.getUsername() + " ja entrou na sua sessao");
 	}
@@ -32,9 +35,10 @@ public class Sessao {
 	public ColocarProdutoHandler getColocarProdutoHandler() {
 		return new ColocarProdutoHandler(this.currentMerch);
 	}
-
+	
+	//UC6
 	public EncomendarHandler getEncomendarComerciantesHandler() {
-		return new EncomendarHandler();
+		return new EncomendarHandler(this.currentUser, this.merchCat);
 	}
 	
 }

@@ -22,7 +22,7 @@ public class Sessao {
 
 	// UC5
 	public ColocarProdutoHandler getColocarProdutoHandler() {
-		return new ColocarProdutoHandler();
+		return new ColocarProdutoHandler(this.currentUser);
 	}
 
 	public EncomendarHandler getEncomendarComerciantesHandler() {

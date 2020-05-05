@@ -58,7 +58,7 @@ public class ClienteExemplo {
 			
 			System.out.println("Produtos disponíveis");
 		});
-		
+/*		
 		// UC6 + UC7
 		Optional<Sessao> talvezSessao3 = ty2g.autenticar("Felismina", "hortadafcul");
 		talvezSessao3.ifPresent( (Sessao s) -> {
@@ -97,6 +97,6 @@ public class ClienteExemplo {
 			
 			
 		});
-	
+*/
 	}
 }

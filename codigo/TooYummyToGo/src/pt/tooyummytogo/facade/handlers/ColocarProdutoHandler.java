@@ -3,21 +3,28 @@ package pt.tooyummytogo.facade.handlers;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import pt.tooyummytogo.domain.Merchant;
+import pt.tooyummytogo.domain.MerchantCatalog;
+import pt.tooyummytogo.domain.User;
+
 public class ColocarProdutoHandler {
 
+	private Merchant currentMerchant;
+
+	public ColocarProdutoHandler(User currentUser) {
+		this.currentMerchant = MerchantCatalog.getMerchant(currentUser);
+	}
+
 	public List<String> inicioDeProdutosHoje() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.currentMerchant.getProductsStringList();
 	}
 
-	public void indicaProduto(String string, int i) {
-		// TODO Auto-generated method stub
-		
+	public void indicaProduto(String tp, int quantity) {
+		this.currentMerchant.indicaProduto(tp, quantity);
 	}
 
-	public void confirma(LocalDateTime now, LocalDateTime plusHours) {
-		// TODO Auto-generated method stub
-		
+	public void confirma(LocalDateTime start, LocalDateTime end) {
+		this.currentMerchant.confirmaHoras(start, end);
 	}
 
 }

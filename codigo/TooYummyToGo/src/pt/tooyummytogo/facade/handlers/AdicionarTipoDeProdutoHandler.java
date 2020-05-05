@@ -13,7 +13,7 @@ public class AdicionarTipoDeProdutoHandler {
 		this.currentMerchant = MerchantCatalog.getMerchant(currentUser);
 	}
 
-	public void registaTipoDeProduto(String tp, double p) {
-		this.currentMerchant.addProductType(tp, p);
+	public void registaTipoDeProduto(String product, double quantity) {
+		this.currentMerchant.addProductType(product, quantity);
 	}
 }

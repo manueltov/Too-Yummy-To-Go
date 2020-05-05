@@ -8,26 +8,32 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class Merchant {
 
-	private User user;
-	private PosicaoCoordenadas p;
+	private String username;
+	private String password;
+	private PosicaoCoordenadas posi;
 	private List<Product> lstProducts;
 	private ProductsForSale productsForSale;
 	
-	public Merchant(User user, PosicaoCoordenadas p) {
-		this.user = user;
-		this.p = p;
+	public Merchant(String username, String password, PosicaoCoordenadas posi) {
+		this.username = username;
+		this.password = password;
+		this.posi = posi;
 		this.lstProducts = new ArrayList<Product>();
 		this.productsForSale = new ProductsForSale();
 	}
 
-	public User getUser() {
-		return user;
+	public String getUsername() {
+		return username;
+	}
+	
+	public boolean confirmPassword(String pw) {
+		return this.password.equals(pw);
 	}
 
 	public int addProductType(String tp, double price) {
 		this.lstProducts.add(new Product(tp, price));
 		///////// so pra debbug /////////////////////////////
-		System.out.println("o " + this.user.getUsername() + " adicionou " + tp + " em " + (lstProducts.size()-1));
+		System.out.println("o " + this.username + " adicionou " + tp + " em " + (lstProducts.size()-1));
 		///////// so pra debbug /////////////////////////////
 		System.out.println("por enquanto a lista esta assim: " + this.lstProducts.toString());
 		return lstProducts.size()-1;

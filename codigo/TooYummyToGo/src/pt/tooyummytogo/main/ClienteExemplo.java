@@ -40,7 +40,7 @@ public class ClienteExemplo {
 				atp.registaTipoDeProduto(tp, r.nextDouble() * 10);
 			}
 		});
-/*
+
 		// UC5
 		Optional<Sessao> talvezSessao2 = ty2g.autenticar("Silvino", "bardoc2");
 		talvezSessao2.ifPresent( (Sessao s) -> {
@@ -97,6 +97,6 @@ public class ClienteExemplo {
 			
 			
 		});
-*/		
+	
 	}
 }

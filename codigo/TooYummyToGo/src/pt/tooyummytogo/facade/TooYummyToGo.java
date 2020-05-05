@@ -30,16 +30,13 @@ public class TooYummyToGo {
 	 * UC2
 	 */
 	public Optional<Sessao> autenticar(String username, String password) {
-		Optional<User> user = userCat.tryLogin(username, password);
-		Optional<User> merch = merchCat.tryLogin(username, password);
-		if(user.isPresent() || merch.isPresent()){
-			///////// so pra debbug /////////////////////////////
-			System.out.println("o " + username + " fez login");
-			if(user.isPresent())
-				return Optional.of(new Sessao(user.get()));
-			else return Optional.of(new Sessao(merch.get()));
-		}
-		else{
+		Optional<User> currentUser = userCat.tryLogin(username, password);
+		Optional<User> currentMerch = merchCat.tryLogin(username, password);
+		if(currentUser.isPresent()) {
+			return Optional.of(new Sessao (currentUser.get()));	
+		}else if (currentMerch.isPresent()) {
+			return Optional.of(new Sessao(currentMerch.get()));
+		}else {
 			return Optional.empty();
 		}
 	}

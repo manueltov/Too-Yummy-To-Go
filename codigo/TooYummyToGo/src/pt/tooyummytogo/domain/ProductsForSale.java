@@ -25,5 +25,14 @@ public class ProductsForSale {
 	public void setHoraFim(LocalDateTime horaFim) {
 		this.horaFim = horaFim;
 	}
+
+	public LocalDateTime getHoraInicio() {
+		return horaInicio;
+	}
+
+	public LocalDateTime getHoraFim() {
+		return horaFim;
+	}
+	
 	
 }

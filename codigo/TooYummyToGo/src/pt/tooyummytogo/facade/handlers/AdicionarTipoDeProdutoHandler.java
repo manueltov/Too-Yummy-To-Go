@@ -9,8 +9,8 @@ public class AdicionarTipoDeProdutoHandler {
 
 	private Merchant currentMerchant;
 
-	public AdicionarTipoDeProdutoHandler(User currentUser) {
-		this.currentMerchant = MerchantCatalog.getMerchant(currentUser);
+	public AdicionarTipoDeProdutoHandler(Merchant currentMerch) {
+		this.currentMerchant = currentMerch;
 	}
 
 	public void registaTipoDeProduto(String product, double quantity) {

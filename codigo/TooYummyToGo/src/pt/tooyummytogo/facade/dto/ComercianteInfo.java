@@ -27,6 +27,6 @@ public class ComercianteInfo {
 		return merchInfo;
 	}
 	
-	
+	//
 	
 }

@@ -8,26 +8,32 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class Merchant {
 
-	private User user;
-	private PosicaoCoordenadas p;
+	private String username;
+	private String password;
+	private PosicaoCoordenadas posi;
 	private List<Product> lstProducts;
 	private ProductsForSale productsForSale;
 	
-	public Merchant(User user, PosicaoCoordenadas p) {
-		this.user = user;
-		this.p = p;
+	public Merchant(String username, String password, PosicaoCoordenadas posi) {
+		this.username = username;
+		this.password = password;
+		this.posi = posi;
 		this.lstProducts = new ArrayList<Product>();
 		this.productsForSale = new ProductsForSale();
 	}
 
-	public User getUser() {
-		return user;
+	public String getUsername() {
+		return username;
+	}
+	
+	public boolean confirmPassword(String pw) {
+		return this.password.equals(pw);
 	}
 
 	public int addProductType(String tp, double price) {
 		this.lstProducts.add(new Product(tp, price));
 		///////// so pra debbug /////////////////////////////
-		System.out.println("o " + this.user.getUsername() + " adicionou " + tp + " em " + (lstProducts.size()-1));
+		System.out.println("o " + this.username + " adicionou " + tp + " em " + (lstProducts.size()-1));
 		///////// so pra debbug /////////////////////////////
 		System.out.println("por enquanto a lista esta assim: " + this.lstProducts.toString());
 		return lstProducts.size()-1;
@@ -56,7 +62,7 @@ public class Merchant {
 		if(prdt != null){
 			this.productsForSale.addProductForSale(prdt, quantity);
 			///////// so pra debbug /////////////////////////////
-			System.out.println("pediram para adicionar um produto à lista dos produtos para venda: " + quantity + " 'vezes' " + prdt.toString() );
+			System.out.println("pediram para adicionar um produto ï¿½ lista dos produtos para venda: " + quantity + " 'vezes' " + prdt.toString() );
 		}
 		else {
 			//TODO
@@ -64,12 +70,20 @@ public class Merchant {
 		}
 			
 	}
+	
+	public ProductsForSale getProductsForSale() {
+		return productsForSale;
+	}
 
 	public void confirmaHoras(LocalDateTime start, LocalDateTime end) {
 		this.productsForSale.setHoraInicio(start);
 		this.productsForSale.setHoraFim(end);
 		///////// so pra debbug /////////////////////////////
 		System.out.println("puseram o horario para a venda disto com inicio : " + start + " e fim : " + end );
+	}
+
+	public PosicaoCoordenadas getCoordinates() {
+		return this.posi;
 	}
 	
 }

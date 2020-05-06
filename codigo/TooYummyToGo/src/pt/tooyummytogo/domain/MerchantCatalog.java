@@ -8,26 +8,34 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class MerchantCatalog {
 	
-	private static List<Merchant> merchantCat = new ArrayList<>();
+	private List<Merchant> merchantCat;
+	
+	public MerchantCatalog() {
+		this.merchantCat = new ArrayList<>();
+	}
+	
+	public List<Merchant> getMerchantCatalog() {
+		return this.merchantCat;
+	}
 
-	public void adicionaMerchant(String username, String password, PosicaoCoordenadas p) {
-		merchantCat.add(new Merchant(new User(username, password), p));
+	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) {
+		merchantCat.add(new Merchant(username, password, posi));
 		///////// so pra debbug /////////////////////////////
 		System.out.println("so pra dizer  q o " + username + " foi adiconado ao cataMerchant.");
 	}
 	
-	public static Merchant getMerchant(User user) {
+	public Merchant getMerchant(String username) {
 		for (Merchant merch : merchantCat) {
-			if(merch.getUser().equals(user))
+			if(merch.getUsername().equals(username))
 				return merch;
 		}
 		return null; //TODO return exception Merchant does not exist, era melhor
 	}
 
-	public Optional<User> tryLogin(String username, String password) {
+	public Optional<Merchant> tryLogin(String username, String password) {
 		for (Merchant merchant : merchantCat) {
-			if(merchant.getUser().getUsername().equals(username) && merchant.getUser().confirmPassword(password)) {
-				return Optional.of(merchant.getUser());
+			if(merchant.getUsername().equals(username) && merchant.confirmPassword(password)) {
+				return Optional.of(merchant);
 			}
 		}
 		return Optional.empty();

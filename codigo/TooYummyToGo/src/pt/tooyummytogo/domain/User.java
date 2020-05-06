@@ -1,5 +1,6 @@
 package pt.tooyummytogo.domain;
 
+
 public class User {
 	
 	private String username;

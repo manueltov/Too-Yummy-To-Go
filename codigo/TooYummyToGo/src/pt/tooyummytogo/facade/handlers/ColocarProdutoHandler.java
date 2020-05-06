@@ -11,8 +11,8 @@ public class ColocarProdutoHandler {
 
 	private Merchant currentMerchant;
 
-	public ColocarProdutoHandler(User currentUser) {
-		this.currentMerchant = MerchantCatalog.getMerchant(currentUser);
+	public ColocarProdutoHandler(Merchant currentMerch) {
+		this.currentMerchant = currentMerch;
 	}
 
 	public List<String> inicioDeProdutosHoje() {

@@ -89,7 +89,7 @@ public class Merchant {
 	public List<ProdutoInfo> getProductsInfoList() {
 		List<ProdutoInfo> aux = new ArrayList<ProdutoInfo>();
 		for (ProductInSale productInSale : this.productsForSale.getLstProductsForSale()) {
-			aux.add(new ProdutoInfo(productInSale.getPrdt()));
+			aux.add(new ProdutoInfo(productInSale));
 		}
 		return aux;
 	}

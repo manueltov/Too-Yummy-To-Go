@@ -11,7 +11,6 @@ public class Sessao {
 	
 	private User currentUser;
 	private ComercianteInfo currentMerch;
-	private MerchantCatalog merchCat;
 	
 	public Sessao(User currentUser) {
 		this.currentUser = currentUser; //ver o q se passa aqui
@@ -37,7 +36,7 @@ public class Sessao {
 	
 	//UC6
 	public EncomendarHandler getEncomendarComerciantesHandler() {
-		return new EncomendarHandler(this.currentUser, this.merchCat);
+		return new EncomendarHandler(this.currentUser);
 	}
 	
 }

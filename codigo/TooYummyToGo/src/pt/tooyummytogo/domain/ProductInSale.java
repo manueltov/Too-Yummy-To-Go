@@ -13,5 +13,9 @@ public class ProductInSale {
 	public Product getPrdt() {
 		return prdt;
 	}
+
+	public int getQuantity() {
+		return quantity;
+	}
 	
 }

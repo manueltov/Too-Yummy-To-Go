@@ -14,14 +14,12 @@ import pt.tooyummytogo.facade.dto.ProdutoInfo;
 public class EncomendarHandler {
 
 	private User currentUser;
-	private MerchantCatalog merchCat;
 	private ComercianteInfo merchInfo;
 	
 	private SearchHandler search;
 	
-	public EncomendarHandler(User currentUser, MerchantCatalog merchCat) {
+	public EncomendarHandler(User currentUser) {
 		this.currentUser = currentUser;
-		this.merchCat = merchCat;
 		this.search = new SearchHandler();
 	}
 
@@ -45,7 +43,6 @@ public class EncomendarHandler {
 	}
 
 	public void indicaProduto(ProdutoInfo p, int i) {
-		// TODO Auto-generated method stub
 		
 	}
 

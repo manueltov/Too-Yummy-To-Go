@@ -1,10 +1,13 @@
 package pt.tooyummytogo.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 	
 	private String username;
-	private String password;//ver melhor se isto pode ser
+	private String password;
+	private List<Order> lstOrder = new ArrayList<Order>();
 	
 	public User(String username, String password) {
 		this.username = username;
@@ -17,6 +20,10 @@ public class User {
 
 	public String getUsername() {
 		return this.username;
+	}
+	
+	public void addOrder() {
+		this.lstOrder.add(new Order()); //mega incomplleto mas ideia a ficar,...
 	}
 
 }

@@ -12,15 +12,11 @@ public class Sessao {
 	private ComercianteInfo currentMerch;
 	
 	public Sessao(User currentUser) {
-		this.currentUser = currentUser; //ver o q se passa aqui
-		///////// so pra debbug /////////////////////////////
-		System.out.println("o " + currentUser.getUsername() + " ja entrou na sua sessao");
+		this.currentUser = currentUser;
 	}
 	
 	public Sessao(ComercianteInfo currentMerch) {
-		this.currentMerch = currentMerch; //ver o q se passa aqui
-		///////// so pra debbug /////////////////////////////
-		System.out.println("o " + currentMerch.getUsername() + " ja entrou na sua sessao");
+		this.currentMerch = currentMerch;
 	}
 
 	// UC4

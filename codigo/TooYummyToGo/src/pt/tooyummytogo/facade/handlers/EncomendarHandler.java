@@ -16,6 +16,7 @@ import pt.tooyummytogo.domain.User;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
+import pt.tooyummytogo.facade.utils.Search;
 
 public class EncomendarHandler {
 
@@ -24,11 +25,11 @@ public class EncomendarHandler {
 	private Order ord;
 	private Delivery delivery;	
 	
-	private SearchHandler search;
+	private Search search;
 	
 	public EncomendarHandler(User currentUser) {
 		this.currentUser = currentUser;
-		this.search = new SearchHandler();
+		this.search = new Search();
 		ord = this.currentUser.createOrder();
 	}
 
@@ -54,11 +55,7 @@ public class EncomendarHandler {
 
 	public void indicaProduto(ProdutoInfo prd, int quantity) {
 		ProductInSale prdInSale = this.merchInfo.getProductsForSale().getProductInSale(prd.getProductType());
-		//ver se ha quantidade
 		if(prdInSale.getQuantity() >= quantity) {
-			//caso sim, cria copia de prdoto pra venda (q sera para adicionar à order)
-			// depois altera a quantidade desse para a pretendida
-			// decrementa  a qunatidade do produto para venda 
 			ProductInSale prdToOrder = prdInSale.clone();
 			prdToOrder.setQuantity(quantity);
 			this.ord.addProductToOrder(prdToOrder);

@@ -13,8 +13,6 @@ public class UserCatalog {
 
 	public void adicionaUtilizador(String username, String password) {
 		userCat.put(username, new User(username, password));
-		///////// so pra debbug /////////////////////////////
-		System.out.println("so pra dizer  q o " + username + " foi adiconado ao cataUser.");
 	}
 	
 	public Optional<User> tryLogin(String username, String password) {

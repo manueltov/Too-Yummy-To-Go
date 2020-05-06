@@ -25,8 +25,6 @@ public class MerchantCatalog {
 
 	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) {
 		merchantCat.add(new Merchant(username, password, posi));
-		///////// so pra debbug /////////////////////////////
-		System.out.println("so pra dizer  q o " + username + " foi adiconado ao cataMerchant.");
 	}
 	
 	public static Merchant getMerchant(String username) {

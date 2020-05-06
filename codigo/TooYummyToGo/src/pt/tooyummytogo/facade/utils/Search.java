@@ -1,4 +1,4 @@
-package pt.tooyummytogo.facade.handlers;
+package pt.tooyummytogo.facade.utils;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -11,14 +11,14 @@ import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
-public class SearchHandler {
+public class Search {
 	
 	private PosicaoCoordenadas coordinates;
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFim;
 	private Float raio;
 	
-	public SearchHandler() {
+	public Search() {
 		this.horaInicio = LocalDateTime.now();
 		this.horaFim = horaInicio.plusHours(1);
 		this.raio = (float) 5000;
@@ -38,34 +38,24 @@ public class SearchHandler {
 	}
 
 	public List<ComercianteInfo> searchIt() {
+		
 		List<ComercianteInfo> merchCat = MerchantCatalog.getMerchantCatalog();
 		List<ComercianteInfo> merchInfo = new ArrayList<ComercianteInfo>();
+		
 		for (ComercianteInfo comercianteInfo : merchCat) {
 			if(comercianteInfo.hasProductsForSale()) {
 				boolean inRange = comercianteInfo.getCoordinates().distanciaEmMetros(this.coordinates) <= raio;
-				
-				LocalDateTime aux1 = comercianteInfo.getProductsForSale().getHoraFim();
 
-				boolean startsBeforeEnd = horaInicio.toLocalTime().isBefore(aux1.toLocalTime());
-				///////// so pra debbug /////////////////////////////
-				System.out.println(startsBeforeEnd);
-				// no caso da Felismina a primeira vez neste boolean fica a -1
+				boolean startRange = horaInicio.toLocalTime().isBefore(comercianteInfo.getProductsForSale().getHoraFim().toLocalTime());
+				boolean endRange = horaFim.toLocalTime().isAfter(comercianteInfo.getProductsForSale().getHoraInicio().toLocalTime());
 				
-				LocalDateTime aux2 = comercianteInfo.getProductsForSale().getHoraInicio();
-				boolean endsAfterStart = horaFim.toLocalTime().isAfter(aux2.toLocalTime());
-				///////// so pra debbug /////////////////////////////
-				System.out.println(endsAfterStart);
-				// no caso da Felismina a primeira vez neste boolean fica a +1
-				
-				if( inRange && startsBeforeEnd && endsAfterStart) {
+				if( inRange && startRange && endRange) {
 					merchInfo.add(comercianteInfo);
-					System.out.println("boleans funcionaram");
 				}
 			}
 		}
 		if(merchInfo.isEmpty()) {
-			System.out.println("pesquisa esta vazia");
-			//mandar erro
+			///mandar erro
 		}
 		return merchInfo;
 	}

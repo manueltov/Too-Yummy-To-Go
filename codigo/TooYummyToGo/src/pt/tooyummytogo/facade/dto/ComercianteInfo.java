@@ -1,7 +1,6 @@
 package pt.tooyummytogo.facade.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import pt.tooyummytogo.domain.Merchant;
@@ -55,6 +54,11 @@ public class ComercianteInfo {
 
 	public boolean hasProductsForSale() {
 		return this.merch.hasProductsForSale();
+	}
+
+	@Override
+	public String toString() {
+		return "[ Comerciante: " + getUsername() + " ]";
 	}
 
 }

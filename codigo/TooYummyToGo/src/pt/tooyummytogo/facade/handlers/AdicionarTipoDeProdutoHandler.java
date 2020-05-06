@@ -11,7 +11,7 @@ public class AdicionarTipoDeProdutoHandler {
 		this.currentMerchant = currentMerch;
 	}
 
-	public void registaTipoDeProduto(String product, double quantity) {
-		this.currentMerchant.addProductType(product, quantity);
+	public void registaTipoDeProduto(String product, double price) {
+		this.currentMerchant.addProductType(product, price);
 	}
 }

@@ -33,10 +33,6 @@ public class Merchant {
 
 	public int addProductType(String tp, double price) {
 		this.lstProducts.add(new Product(tp, price));
-		///////// so pra debbug /////////////////////////////
-		System.out.println("o " + this.username + " adicionou " + tp + " em " + (lstProducts.size()-1));
-		///////// so pra debbug /////////////////////////////
-		System.out.println("por enquanto a lista esta assim: " + this.lstProducts.toString());
 		return lstProducts.size()-1;
 	}
 
@@ -45,8 +41,6 @@ public class Merchant {
 		for (Product prd : this.lstProducts) {
 			aux.add(prd.getProductType());
 		}
-		///////// so pra debbug /////////////////////////////
-		System.out.println("pediram a lista de produtos deste comerciante e foi dado isto: " + aux.toString());
 		return aux;
 	}
 	
@@ -62,8 +56,6 @@ public class Merchant {
 		Product prdt = getProduct(tp);
 		if(prdt != null){
 			this.productsForSale.addProductForSale(prdt, quantity);
-			///////// so pra debbug /////////////////////////////
-			System.out.println("pediram para adicionar um produto � lista dos produtos para venda: " + quantity + " 'vezes' " + prdt.toString() );
 		}
 		else {
 			//TODO
@@ -78,8 +70,6 @@ public class Merchant {
 	public void confirmaHoras(LocalDateTime start, LocalDateTime end) {
 		this.productsForSale.setHoraInicio(start);
 		this.productsForSale.setHoraFim(end);
-		///////// so pra debbug /////////////////////////////
-		System.out.println("puseram o horario para a venda disto com inicio : " + start + " e fim : " + end );
 	}
 
 	public PosicaoCoordenadas getCoordinates() {

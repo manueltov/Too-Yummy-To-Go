@@ -84,7 +84,7 @@ public class ClienteExemplo {
 					System.out.println(i);
 				}
 			}
-					
+			
 			// A partir de agora é UC7
 			List<ProdutoInfo> ps = lch.escolheComerciante(cs.get(0));
 			for (ProdutoInfo p : ps) {

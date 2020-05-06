@@ -7,21 +7,21 @@ public class Delivery {
 	private User user;
 	private ComercianteInfo merchInfo;
 	private Order ord;
-	private boolean payed;
+	private boolean isPayed;
 	
 	public Delivery(User user, ComercianteInfo merchInfo, Order ord) {
 		this.user = user;
 		this.merchInfo = merchInfo;
 		this.ord = ord;
-		this.payed = false;
+		this.isPayed = false;
 	}
 
 	public boolean isPayed() {
-		return payed;
+		return isPayed;
 	}
 
 	public void setPayed(boolean payed) {
-		this.payed = payed;
+		this.isPayed = payed;
 	}
 	
 	public double totalPrice() {
@@ -29,7 +29,7 @@ public class Delivery {
 	}
 
 	public String generateCode() {
-		return hashCode()+"";
+		return Math.abs(hashCode())+"";
 	}
 
 	@Override

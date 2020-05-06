@@ -48,17 +48,5 @@ public class ComercianteInfo {
 	public PosicaoCoordenadas getCoordinates() {
 		return this.merch.getCoordinates();
 	}
-	
-/*
-	public List<ComercianteInfo> getIndicaLocalizacaoActual(MerchantCatalog merchCat, PosicaoCoordenadas coordinate, LocalDateTime horaInicio, LocalDateTime horaFim, Float raio) {
-		for(Merchant merch : merchCat.getMerchantCatalog()) {
-			boolean firstCondition = merch.getCoordinates().distanciaEmMetros(coordinate) <= raio; //Rever o .getHour de baixo
-			boolean secondCondition = horaInicio.getHour() <= merch.getProductsForSale().getHoraFim().getHour() && horaFim.getHour() >= merch.getProductsForSale().getHoraInicio().getHour();
-			if( firstCondition && secondCondition) {
-				merchInfo.add(merch.getUsername());
-			}
-		}
-		return merchInfo;
-	}
-*/
+
 }

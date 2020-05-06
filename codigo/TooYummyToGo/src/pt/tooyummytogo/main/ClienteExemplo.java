@@ -58,7 +58,7 @@ public class ClienteExemplo {
 			
 			System.out.println("Produtos disponíveis");
 		});
-/*
+
 		// UC6 + UC7
 		Optional<Sessao> talvezSessao3 = ty2g.autenticar("Felismina", "hortadafcul");
 		talvezSessao3.ifPresent( (Sessao s) -> {
@@ -85,7 +85,7 @@ public class ClienteExemplo {
 				}
 			}
 			
-			
+/*			
 			// A partir de agora é UC7
 			List<ProdutoInfo> ps = lch.escolheComerciante(cs.get(0));
 			for (ProdutoInfo p : ps) {
@@ -94,9 +94,9 @@ public class ClienteExemplo {
 			String codigoReserva = lch.indicaPagamento("365782312312", "02/21", "765");
 			System.out.println("Reserva " + codigoReserva + " feita com sucesso"); 
 			
-			
+*/			
 			
 		});
-*/
+
 	}
 }

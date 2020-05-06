@@ -17,30 +17,27 @@ public class EncomendarHandler {
 	private MerchantCatalog merchCat;
 	private ComercianteInfo merchInfo;
 	
-	private LocalDateTime horaInicio;
-	private LocalDateTime horaFim;
-	private Float raio;
+	private SearchHandler search;
 	
 	public EncomendarHandler(User currentUser, MerchantCatalog merchCat) {
 		this.currentUser = currentUser;
 		this.merchCat = merchCat;
-	}
-/*
-	public List<ComercianteInfo> indicaLocalizacaoActual(PosicaoCoordenadas coordinate) {
-		this.raio = (float) 5000;
-		this.horaInicio = LocalDateTime.now();
-		this.horaFim = horaInicio.plusHours(1);
-		return this.merchInfo.getIndicaLocalizacaoActual(merchCat, coordinate, horaInicio, horaFim, raio);
-	}
-*/
-	public List<ComercianteInfo> redefineRaio(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		this.search = new SearchHandler();
 	}
 
-	public List<ComercianteInfo> redefinePeriodo(LocalDateTime now, LocalDateTime plusHours) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ComercianteInfo> indicaLocalizacaoActual(PosicaoCoordenadas coordinates) {
+		this.search.indicaLocalizacaoActual(coordinates);
+		return this.search.searchIt();
+	}
+
+	public List<ComercianteInfo> redefineRaio(int i) {
+		this.search.redefineRaio(i);
+		return this.search.searchIt();
+	}
+
+	public List<ComercianteInfo> redefinePeriodo(LocalDateTime start, LocalDateTime end) {
+		this.search.redefinePeriodo(start, end);
+		return this.search.searchIt();
 	}
 
 	public List<ProdutoInfo> escolheComerciante(ComercianteInfo comercianteInfo) {

@@ -15,8 +15,12 @@ public class MerchantCatalog {
 		merchantCat = new ArrayList<>();
 	}
 	
-	public static List<Merchant> getMerchantCatalog() {
-		return merchantCat;
+	public static List<ComercianteInfo> getMerchantCatalog() {
+		List<ComercianteInfo> aux = new ArrayList<ComercianteInfo>();
+		for (Merchant merch : merchantCat) {
+			aux.add(new ComercianteInfo(merch.getUsername()));
+		}
+		return aux;
 	}
 
 	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) {

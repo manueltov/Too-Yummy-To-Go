@@ -50,4 +50,8 @@ public class ProductsForSale {
 		return aux;
 	}
 
+	public boolean hasProductsForSale() {
+		return this.lstProductsForSale.isEmpty();
+	}
+
 }

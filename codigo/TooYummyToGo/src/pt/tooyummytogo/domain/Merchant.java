@@ -93,5 +93,9 @@ public class Merchant {
 		}
 		return aux;
 	}
+
+	public boolean hasProductsForSale() {
+		return productsForSale.hasProductsForSale();
+	}
 	
 }

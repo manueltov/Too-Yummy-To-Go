@@ -1,6 +1,5 @@
 package pt.tooyummytogo;
 
-import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.User;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.handlers.AdicionarTipoDeProdutoHandler;

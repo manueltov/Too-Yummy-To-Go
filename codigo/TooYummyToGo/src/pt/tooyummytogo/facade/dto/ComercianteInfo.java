@@ -53,4 +53,8 @@ public class ComercianteInfo {
 		return this.merch.getProductsInfoList();
 	}
 
+	public boolean hasProductsForSale() {
+		return this.merch.hasProductsForSale();
+	}
+
 }

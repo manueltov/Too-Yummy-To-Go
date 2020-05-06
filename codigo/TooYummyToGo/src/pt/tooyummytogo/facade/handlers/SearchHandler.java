@@ -1,6 +1,8 @@
 package pt.tooyummytogo.facade.handlers;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.chrono.Chronology;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,21 +41,31 @@ public class SearchHandler {
 		List<ComercianteInfo> merchCat = MerchantCatalog.getMerchantCatalog();
 		List<ComercianteInfo> merchInfo = new ArrayList<ComercianteInfo>();
 		for (ComercianteInfo comercianteInfo : merchCat) {
-			boolean inRange = comercianteInfo.getCoordinates().distanciaEmMetros(this.coordinates) <= raio;
-			
-			boolean startsBeforeEnd = horaInicio.isAfter(comercianteInfo.getProductsForSale().getHoraFim());
-			///////// so pra debbug /////////////////////////////
-			System.out.println(startsBeforeEnd);
-			// no caso da Felismina a primeira vez neste boolean fica a -1
-			
-			boolean endsAfterStart = horaFim.isBefore(comercianteInfo.getProductsForSale().getHoraInicio());
-			///////// so pra debbug /////////////////////////////
-			System.out.println();
-			// no caso da Felismina a primeira vez neste boolean fica a +1
-			
-			if( inRange && startsBeforeEnd && endsAfterStart) {
-				merchInfo.add(comercianteInfo);
+			if(comercianteInfo.hasProductsForSale()) {
+				boolean inRange = comercianteInfo.getCoordinates().distanciaEmMetros(this.coordinates) <= raio;
+				
+				LocalDateTime aux1 = comercianteInfo.getProductsForSale().getHoraFim();
+
+				boolean startsBeforeEnd = horaInicio.toLocalTime().isBefore(aux1.toLocalTime());
+				///////// so pra debbug /////////////////////////////
+				System.out.println(startsBeforeEnd);
+				// no caso da Felismina a primeira vez neste boolean fica a -1
+				
+				LocalDateTime aux2 = comercianteInfo.getProductsForSale().getHoraInicio();
+				boolean endsAfterStart = horaFim.toLocalTime().isAfter(aux2.toLocalTime());
+				///////// so pra debbug /////////////////////////////
+				System.out.println(endsAfterStart);
+				// no caso da Felismina a primeira vez neste boolean fica a +1
+				
+				if( inRange && startsBeforeEnd && endsAfterStart) {
+					merchInfo.add(comercianteInfo);
+					System.out.println("boleans funcionaram");
+				}
 			}
+		}
+		if(merchInfo.isEmpty()) {
+			System.out.println("pesquisa esta vazia");
+			//mandar erro
 		}
 		return merchInfo;
 	}

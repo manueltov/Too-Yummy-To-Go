@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import pt.tooyummytogo.exceptions.MerchantAlreadyExistsException;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
@@ -23,7 +24,10 @@ public class MerchantCatalog {
 		return aux;
 	}
 
-	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) {
+	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) throws MerchantAlreadyExistsException {
+		if (merchantCat.contains(getMerchant(username))) {
+			throw new MerchantAlreadyExistsException();
+		}
 		merchantCat.add(new Merchant(username, password, posi));
 	}
 	

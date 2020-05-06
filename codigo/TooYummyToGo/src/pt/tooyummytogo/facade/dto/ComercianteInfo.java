@@ -7,6 +7,7 @@ import pt.tooyummytogo.domain.Merchant;
 import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.Product;
 import pt.tooyummytogo.domain.ProductsForSale;
+import pt.tooyummytogo.exceptions.ProductAlreadyExists;
 
 public class ComercianteInfo {
 	
@@ -20,7 +21,7 @@ public class ComercianteInfo {
 		return this.merch.getUsername();
 	}
 	
-	public int addProductType(String tp, double price) {
+	public int addProductType(String tp, double price) throws ProductAlreadyExists {
 		return this.merch.addProductType(tp, price);
 	}
 	

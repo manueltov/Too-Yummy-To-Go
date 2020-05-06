@@ -1,18 +1,16 @@
 package pt.tooyummytogo.facade.handlers;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.monstercard.Card;
 import com.monstercard.MonsterCardAPI;
 
 import pt.tooyummytogo.domain.Delivery;
-import pt.tooyummytogo.domain.Merchant;
-import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.Order;
 import pt.tooyummytogo.domain.ProductInSale;
 import pt.tooyummytogo.domain.User;
+import pt.tooyummytogo.exceptions.NoMerchantInArea;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
@@ -35,17 +33,35 @@ public class EncomendarHandler {
 
 	public List<ComercianteInfo> indicaLocalizacaoActual(PosicaoCoordenadas coordinates) {
 		this.search.indicaLocalizacaoActual(coordinates);
-		return this.search.searchIt();
+		try {
+			return this.search.searchIt();
+		} catch (NoMerchantInArea e) {
+			System.err.println("Error: No merchant available.");
+			//e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<ComercianteInfo> redefineRaio(int i) {
 		this.search.redefineRaio(i);
-		return this.search.searchIt();
+		try {
+			return this.search.searchIt();
+		} catch (NoMerchantInArea e) {
+			System.err.println("Error: No merchant available.");
+			//e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<ComercianteInfo> redefinePeriodo(LocalDateTime start, LocalDateTime end) {
 		this.search.redefinePeriodo(start, end);
-		return this.search.searchIt();
+		try {
+			return this.search.searchIt();
+		} catch (NoMerchantInArea e) {
+			System.err.println("Error: No merchant available.");
+			//e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<ProdutoInfo> escolheComerciante(ComercianteInfo comercianteInfo) {
@@ -61,7 +77,7 @@ public class EncomendarHandler {
 			this.ord.addProductToOrder(prdToOrder);
 			prdInSale.setQuantity(prdInSale.getQuantity() - quantity);
 		} else {
-			//mandar excepcao de que nao ha quantidade para encomnedar
+			System.err.println("Quantity not enough.");
 		}
 	}
 

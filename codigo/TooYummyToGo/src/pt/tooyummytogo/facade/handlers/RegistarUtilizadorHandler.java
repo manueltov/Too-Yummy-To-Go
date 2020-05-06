@@ -1,6 +1,7 @@
 package pt.tooyummytogo.facade.handlers;
 
 import pt.tooyummytogo.domain.UserCatalog;
+import pt.tooyummytogo.exceptions.UserAlreadyExistsException;
 
 public class RegistarUtilizadorHandler {
 	
@@ -17,7 +18,11 @@ public class RegistarUtilizadorHandler {
 	 * @ensures existe um utilizador com esse username
 	 */
 	public void registarUtilizador(String username, String password) {
-		this.userCat.adicionaUtilizador(username,password);
+		try {
+			this.userCat.adicionaUtilizador(username,password);
+		} catch (UserAlreadyExistsException e) {
+			System.err.println("Error: User already exists.");
+			//e.printStackTrace(); //Uncomment to see error 
+		}
 	}
-
 }

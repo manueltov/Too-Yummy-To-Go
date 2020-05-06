@@ -3,6 +3,8 @@ package pt.tooyummytogo.domain;
 import java.util.HashMap;
 import java.util.Optional;
 
+import pt.tooyummytogo.exceptions.UserAlreadyExistsException;
+
 public class UserCatalog {
 	
 	private HashMap<String, User> userCat;
@@ -11,7 +13,10 @@ public class UserCatalog {
 		this.userCat = new HashMap<>();
 	}
 
-	public void adicionaUtilizador(String username, String password) {
+	public void adicionaUtilizador(String username, String password) throws UserAlreadyExistsException {
+		if (userCat.containsKey(username)) {
+			throw new UserAlreadyExistsException();
+		}
 		userCat.put(username, new User(username, password));
 	}
 	

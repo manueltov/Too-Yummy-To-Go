@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import pt.tooyummytogo.exceptions.ProductAlreadyExists;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
 
@@ -31,7 +32,9 @@ public class Merchant {
 		return this.password.equals(pw);
 	}
 
-	public int addProductType(String tp, double price) {
+	public int addProductType(String tp, double price) throws ProductAlreadyExists {
+		if(lstProducts.contains(getProduct(tp)))
+			throw new ProductAlreadyExists();
 		this.lstProducts.add(new Product(tp, price));
 		return lstProducts.size()-1;
 	}
@@ -45,22 +48,20 @@ public class Merchant {
 	}
 	
 	public Product getProduct(String tp) {
-		for (Product prdt : lstProducts) {
-			if(prdt.getProductType().equals(tp))
-				return prdt;
+		
+		try {
+			for (Product prdt : lstProducts) {
+				if(prdt.getProductType().equals(tp))
+					return prdt;
+			}
+		}catch (Exception e) {
+			System.err.println("Error: Product not found.");
 		}
-		return null; //TODO //mandar excepcao de qe nao ha esse produto
+		return null;
 	}
 	
 	public void indicaProduto(String tp, int quantity) {
-		Product prdt = getProduct(tp);
-		if(prdt != null){
-			this.productsForSale.addProductForSale(prdt, quantity);
-		}
-		else {
-			//TODO
-			//create exception de q produto tem de estar la nista para ir para os produtos do dia
-		}	
+		this.productsForSale.addProductForSale(getProduct(tp), quantity);
 	}
 	
 	public ProductsForSale getProductsForSale() {

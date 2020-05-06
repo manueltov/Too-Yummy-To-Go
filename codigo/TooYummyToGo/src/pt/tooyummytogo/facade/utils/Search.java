@@ -8,6 +8,7 @@ import java.util.List;
 
 import pt.tooyummytogo.domain.Merchant;
 import pt.tooyummytogo.domain.MerchantCatalog;
+import pt.tooyummytogo.exceptions.NoMerchantInArea;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
@@ -37,7 +38,7 @@ public class Search {
 		this.horaFim = end;
 	}
 
-	public List<ComercianteInfo> searchIt() {
+	public List<ComercianteInfo> searchIt() throws NoMerchantInArea {
 		
 		List<ComercianteInfo> merchCat = MerchantCatalog.getMerchantCatalog();
 		List<ComercianteInfo> merchInfo = new ArrayList<ComercianteInfo>();
@@ -55,7 +56,7 @@ public class Search {
 			}
 		}
 		if(merchInfo.isEmpty()) {
-			///mandar erro
+			throw new NoMerchantInArea();
 		}
 		return merchInfo;
 	}

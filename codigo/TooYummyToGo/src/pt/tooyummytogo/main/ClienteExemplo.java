@@ -23,8 +23,8 @@ public class ClienteExemplo {
 		// UC1
 		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
 		regHandler.registarUtilizador("Felismina", "hortadafcul");
-		
-		
+
+
 		// UC3
 		RegistarComercianteHandler regComHandler = ty2g.getRegistarComercianteHandler();
 		

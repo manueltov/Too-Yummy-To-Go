@@ -33,6 +33,9 @@ public class ProductsForSale {
 	public LocalDateTime getHoraFim() {
 		return horaFim;
 	}
-	
-	
+
+	public List<ProductInSale> getLstProductsForSale() {
+		return lstProductsForSale;
+	}
+
 }

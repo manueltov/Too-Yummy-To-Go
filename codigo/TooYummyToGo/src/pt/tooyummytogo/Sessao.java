@@ -13,9 +13,8 @@ public class Sessao {
 	private ComercianteInfo currentMerch;
 	private MerchantCatalog merchCat;
 	
-	public Sessao(User currentUser, MerchantCatalog merchCat) {
+	public Sessao(User currentUser) {
 		this.currentUser = currentUser; //ver o q se passa aqui
-		this.merchCat = merchCat;
 		///////// so pra debbug /////////////////////////////
 		System.out.println("o " + currentUser.getUsername() + " ja entrou na sua sessao");
 	}

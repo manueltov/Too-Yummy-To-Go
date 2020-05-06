@@ -41,8 +41,7 @@ public class EncomendarHandler {
 	}
 
 	public List<ProdutoInfo> escolheComerciante(ComercianteInfo comercianteInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		return comercianteInfo.escolheComerciante();
 	}
 
 	public void indicaProduto(ProdutoInfo p, int i) {

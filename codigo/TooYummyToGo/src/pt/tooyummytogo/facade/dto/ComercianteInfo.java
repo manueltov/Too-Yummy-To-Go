@@ -49,4 +49,8 @@ public class ComercianteInfo {
 		return this.merch.getCoordinates();
 	}
 
+	public List<ProdutoInfo> escolheComerciante() {
+		return this.merch.getProductsInfoList();
+	}
+
 }

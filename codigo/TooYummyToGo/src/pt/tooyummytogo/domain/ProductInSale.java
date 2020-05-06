@@ -9,5 +9,9 @@ public class ProductInSale {
 		this.prdt = prdt;
 		this.quantity = quantity;
 	}
+
+	public Product getPrdt() {
+		return prdt;
+	}
 	
 }

@@ -40,10 +40,17 @@ public class SearchHandler {
 		List<ComercianteInfo> merchInfo = new ArrayList<ComercianteInfo>();
 		for (ComercianteInfo comercianteInfo : merchCat) {
 			boolean inRange = comercianteInfo.getCoordinates().distanciaEmMetros(this.coordinates) <= raio;
+			
 			boolean startsBeforeEnd = horaInicio.compareTo(comercianteInfo.getProductsForSale().getHoraFim()) <= 0;
-			//System.out.println(horaInicio.compareTo(comercianteInfo.getProductsForSale().getHoraFim())); //-1
+			///////// so pra debbug /////////////////////////////
+			//System.out.println(horaInicio.compareTo(comercianteInfo.getProductsForSale().getHoraFim()));
+			// no caso da Felismina a primeira vez neste boolean fica a -1
+			
 			boolean endsAfterStart = horaFim.compareTo(comercianteInfo.getProductsForSale().getHoraInicio()) >= 0;
-			//System.out.println(horaFim.compareTo(comercianteInfo.getProductsForSale().getHoraInicio())); //1
+			///////// so pra debbug /////////////////////////////
+			//System.out.println(horaFim.compareTo(comercianteInfo.getProductsForSale().getHoraInicio()));
+			// no caso da Felismina a primeira vez neste boolean fica a +1
+			
 			if( inRange && startsBeforeEnd && endsAfterStart) {
 				merchInfo.add(comercianteInfo);
 			}

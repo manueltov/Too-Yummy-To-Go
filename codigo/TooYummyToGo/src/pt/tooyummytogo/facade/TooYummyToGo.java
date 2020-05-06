@@ -35,9 +35,9 @@ public class TooYummyToGo {
 		Optional<User> currentUser = userCat.tryLogin(username, password);
 		Optional<ComercianteInfo> currentMerch = merchCat.tryLogin(username, password);
 		if(currentMerch.isPresent()) {
-			return Optional.of(new Sessao (currentMerch.get()));	
+			return Optional.of(new Sessao (new ComercianteInfo(username)));	
 		}else if (currentUser.isPresent()) {
-			return Optional.of(new Sessao (currentUser.get(), merchCat));
+			return Optional.of(new Sessao (currentUser.get()));
 		}else {
 			return Optional.empty();
 		}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
+import pt.tooyummytogo.facade.dto.ProdutoInfo;
 
 public class Merchant {
 
@@ -83,6 +84,14 @@ public class Merchant {
 
 	public PosicaoCoordenadas getCoordinates() {
 		return this.posi;
+	}
+	
+	public List<ProdutoInfo> getProductsInfoList() {
+		List<ProdutoInfo> aux = new ArrayList<ProdutoInfo>();
+		for (ProductInSale productInSale : this.productsForSale.getLstProductsForSale()) {
+			aux.add(new ProdutoInfo(productInSale.getPrdt()));
+		}
+		return aux;
 	}
 	
 }

@@ -51,7 +51,7 @@ public class ProductsForSale {
 	}
 
 	public boolean hasProductsForSale() {
-		return this.lstProductsForSale.isEmpty();
+		return !(this.lstProductsForSale.isEmpty());
 	}
 
 }

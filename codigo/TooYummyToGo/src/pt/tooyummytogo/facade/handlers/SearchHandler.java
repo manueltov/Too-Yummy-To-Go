@@ -41,14 +41,14 @@ public class SearchHandler {
 		for (ComercianteInfo comercianteInfo : merchCat) {
 			boolean inRange = comercianteInfo.getCoordinates().distanciaEmMetros(this.coordinates) <= raio;
 			
-			boolean startsBeforeEnd = horaInicio.compareTo(comercianteInfo.getProductsForSale().getHoraFim()) <= 0;
+			boolean startsBeforeEnd = horaInicio.isAfter(comercianteInfo.getProductsForSale().getHoraFim());
 			///////// so pra debbug /////////////////////////////
-			//System.out.println(horaInicio.compareTo(comercianteInfo.getProductsForSale().getHoraFim()));
+			System.out.println(startsBeforeEnd);
 			// no caso da Felismina a primeira vez neste boolean fica a -1
 			
-			boolean endsAfterStart = horaFim.compareTo(comercianteInfo.getProductsForSale().getHoraInicio()) >= 0;
+			boolean endsAfterStart = horaFim.isBefore(comercianteInfo.getProductsForSale().getHoraInicio());
 			///////// so pra debbug /////////////////////////////
-			//System.out.println(horaFim.compareTo(comercianteInfo.getProductsForSale().getHoraInicio()));
+			System.out.println();
 			// no caso da Felismina a primeira vez neste boolean fica a +1
 			
 			if( inRange && startsBeforeEnd && endsAfterStart) {

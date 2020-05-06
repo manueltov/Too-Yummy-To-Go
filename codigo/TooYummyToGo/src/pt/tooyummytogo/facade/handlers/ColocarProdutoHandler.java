@@ -3,15 +3,13 @@ package pt.tooyummytogo.facade.handlers;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import pt.tooyummytogo.domain.Merchant;
-import pt.tooyummytogo.domain.MerchantCatalog;
-import pt.tooyummytogo.domain.User;
+import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
 public class ColocarProdutoHandler {
 
-	private Merchant currentMerchant;
+	private ComercianteInfo currentMerchant;
 
-	public ColocarProdutoHandler(Merchant currentMerch) {
+	public ColocarProdutoHandler(ComercianteInfo currentMerch) {
 		this.currentMerchant = currentMerch;
 	}
 

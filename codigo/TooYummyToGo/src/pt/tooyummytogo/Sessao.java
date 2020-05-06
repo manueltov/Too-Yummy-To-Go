@@ -1,8 +1,8 @@
 package pt.tooyummytogo;
 
-import pt.tooyummytogo.domain.Merchant;
 import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.User;
+import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.handlers.AdicionarTipoDeProdutoHandler;
 import pt.tooyummytogo.facade.handlers.ColocarProdutoHandler;
 import pt.tooyummytogo.facade.handlers.EncomendarHandler;
@@ -10,7 +10,7 @@ import pt.tooyummytogo.facade.handlers.EncomendarHandler;
 public class Sessao {
 	
 	private User currentUser;
-	private Merchant currentMerch;
+	private ComercianteInfo currentMerch;
 	private MerchantCatalog merchCat;
 	
 	public Sessao(User currentUser, MerchantCatalog merchCat) {
@@ -20,7 +20,7 @@ public class Sessao {
 		System.out.println("o " + currentUser.getUsername() + " ja entrou na sua sessao");
 	}
 	
-	public Sessao(Merchant currentMerch) {
+	public Sessao(ComercianteInfo currentMerch) {
 		this.currentMerch = currentMerch; //ver o q se passa aqui
 		///////// so pra debbug /////////////////////////////
 		System.out.println("o " + currentMerch.getUsername() + " ja entrou na sua sessao");

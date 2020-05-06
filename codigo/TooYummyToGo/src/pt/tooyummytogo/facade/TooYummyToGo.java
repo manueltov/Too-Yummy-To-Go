@@ -3,10 +3,10 @@ package pt.tooyummytogo.facade;
 import java.util.Optional;
 
 import pt.tooyummytogo.Sessao;
-import pt.tooyummytogo.domain.Merchant;
 import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.User;
 import pt.tooyummytogo.domain.UserCatalog;
+import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.handlers.RegistarComercianteHandler;
 import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
 
@@ -33,7 +33,7 @@ public class TooYummyToGo {
 	 */
 	public Optional<Sessao> autenticar(String username, String password) {
 		Optional<User> currentUser = userCat.tryLogin(username, password);
-		Optional<Merchant> currentMerch = merchCat.tryLogin(username, password);
+		Optional<ComercianteInfo> currentMerch = merchCat.tryLogin(username, password);
 		if(currentMerch.isPresent()) {
 			return Optional.of(new Sessao (currentMerch.get()));	
 		}else if (currentUser.isPresent()) {

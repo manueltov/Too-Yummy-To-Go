@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class MerchantCatalog {
 	
-	private List<Merchant> merchantCat;
+	private static List<Merchant> merchantCat;
 	
 	public MerchantCatalog() {
-		this.merchantCat = new ArrayList<>();
+		merchantCat = new ArrayList<>();
 	}
 	
-	public List<Merchant> getMerchantCatalog() {
-		return this.merchantCat;
+	public static List<Merchant> getMerchantCatalog() {
+		return merchantCat;
 	}
 
 	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) {
@@ -24,7 +25,7 @@ public class MerchantCatalog {
 		System.out.println("so pra dizer  q o " + username + " foi adiconado ao cataMerchant.");
 	}
 	
-	public Merchant getMerchant(String username) {
+	public static Merchant getMerchant(String username) {
 		for (Merchant merch : merchantCat) {
 			if(merch.getUsername().equals(username))
 				return merch;
@@ -32,10 +33,10 @@ public class MerchantCatalog {
 		return null; //TODO return exception Merchant does not exist, era melhor
 	}
 
-	public Optional<Merchant> tryLogin(String username, String password) {
+	public Optional<ComercianteInfo> tryLogin(String username, String password) {
 		for (Merchant merchant : merchantCat) {
 			if(merchant.getUsername().equals(username) && merchant.confirmPassword(password)) {
-				return Optional.of(merchant);
+				return Optional.of(new ComercianteInfo(username));
 			}
 		}
 		return Optional.empty();

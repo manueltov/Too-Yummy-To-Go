@@ -26,7 +26,7 @@ public class Merchant {
 		return username;
 	}
 	
-	public boolean confirmPassword(String pw) {
+	boolean confirmPassword(String pw) {
 		return this.password.equals(pw);
 	}
 
@@ -67,8 +67,7 @@ public class Merchant {
 		else {
 			//TODO
 			//create exception de q produto tem de estar la nista para ir para os produtos do dia
-		}
-			
+		}	
 	}
 	
 	public ProductsForSale getProductsForSale() {

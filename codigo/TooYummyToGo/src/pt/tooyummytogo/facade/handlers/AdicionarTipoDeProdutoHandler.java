@@ -1,15 +1,13 @@
 package pt.tooyummytogo.facade.handlers;
 
-import pt.tooyummytogo.domain.Merchant;
-import pt.tooyummytogo.domain.MerchantCatalog;
-import pt.tooyummytogo.domain.User;
+import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
 
 public class AdicionarTipoDeProdutoHandler {
 
-	private Merchant currentMerchant;
+	private ComercianteInfo currentMerchant;
 
-	public AdicionarTipoDeProdutoHandler(Merchant currentMerch) {
+	public AdicionarTipoDeProdutoHandler(ComercianteInfo currentMerch) {
 		this.currentMerchant = currentMerch;
 	}
 

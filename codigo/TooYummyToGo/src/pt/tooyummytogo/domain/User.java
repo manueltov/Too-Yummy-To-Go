@@ -22,8 +22,10 @@ public class User {
 		return this.username;
 	}
 	
-	public void addOrder() {
-		this.lstOrder.add(new Order()); //mega incomplleto mas ideia a ficar,...
+	public Order createOrder() {
+		Order ord = new Order();
+		this.lstOrder.add(ord);
+		return ord;
 	}
 
 }

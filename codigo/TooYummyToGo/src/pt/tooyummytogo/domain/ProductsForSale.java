@@ -37,5 +37,17 @@ public class ProductsForSale {
 	public List<ProductInSale> getLstProductsForSale() {
 		return lstProductsForSale;
 	}
+	
+	public ProductInSale getProductInSale(String prdType) {
+		ProductInSale aux = new ProductInSale(new Product(null, 0), 0);
+		for (ProductInSale productInSale : this.lstProductsForSale) {
+			if(productInSale.getPrdt().getProductType().equals(prdType))
+				aux = productInSale;
+		}
+		if(aux.getPrdt().getProductType() == null) {
+			//return exception
+		}
+		return aux;
+	}
 
 }

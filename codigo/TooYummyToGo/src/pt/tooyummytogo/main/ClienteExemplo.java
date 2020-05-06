@@ -84,8 +84,7 @@ public class ClienteExemplo {
 					System.out.println(i);
 				}
 			}
-			
-/*			
+					
 			// A partir de agora é UC7
 			List<ProdutoInfo> ps = lch.escolheComerciante(cs.get(0));
 			for (ProdutoInfo p : ps) {
@@ -93,9 +92,7 @@ public class ClienteExemplo {
 			}
 			String codigoReserva = lch.indicaPagamento("365782312312", "02/21", "765");
 			System.out.println("Reserva " + codigoReserva + " feita com sucesso"); 
-			
-			
-*/			
+						
 		});
 
 	}

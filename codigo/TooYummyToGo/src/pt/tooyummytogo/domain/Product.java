@@ -50,5 +50,9 @@ public class Product {
 			return false;
 		return true;
 	}
+
+	public double getPrice() {
+		return this.price;
+	}
 	
 }

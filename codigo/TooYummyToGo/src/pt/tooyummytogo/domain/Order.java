@@ -14,5 +14,13 @@ public class Order {
 	public void addProductToOrder(ProductInSale productToAdd) {
 		this.lstOrderProducts.add(productToAdd);
 	}
+
+	public double getTotal() {
+		double total = 0;
+		for (ProductInSale productInSale : this.lstOrderProducts) {
+			total += productInSale.getPrdt().getPrice();
+		}
+		return total;
+	}
 	
 }

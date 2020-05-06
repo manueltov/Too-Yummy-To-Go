@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.monstercard.Card;
+import com.monstercard.MonsterCardAPI;
+
+import pt.tooyummytogo.domain.Delivery;
 import pt.tooyummytogo.domain.Merchant;
 import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.Order;
@@ -18,6 +22,7 @@ public class EncomendarHandler {
 	private User currentUser;
 	private ComercianteInfo merchInfo;
 	private Order ord;
+	private Delivery delivery;	
 	
 	private SearchHandler search;
 	
@@ -63,9 +68,27 @@ public class EncomendarHandler {
 		}
 	}
 
-	public String indicaPagamento(String string, String string2, String string3) {
-		// TODO Auto-generated method stub
-		return null;
+	public String indicaPagamento(String number, String monthYear, String ccv) {
+		
+		//Credit Card
+		String[] monthAndYear = monthYear.split("/");
+		Card c = new Card(number, ccv, monthAndYear[0], monthAndYear[1]);
+		MonsterCardAPI m = new MonsterCardAPI();
+		
+		//Delivery
+		delivery = new Delivery(this.currentUser, this.merchInfo, this.ord);
+		
+		//Payment
+		if(!delivery.isPayed()) {
+			double total = delivery.totalPrice();
+			m.block(c, total);
+			m.charge(c, total);
+			delivery.setPayed(true);
+		}
+		
+		String codigoReserva = delivery.generateCode();
+		
+		return codigoReserva;
 	}
 
 }

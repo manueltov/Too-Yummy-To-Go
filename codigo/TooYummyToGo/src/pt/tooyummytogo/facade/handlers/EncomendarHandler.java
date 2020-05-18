@@ -33,19 +33,35 @@ public class EncomendarHandler {
 
 	public List<ComercianteInfo> indicaLocalizacaoActual(PosicaoCoordenadas coordinates) {
 		this.search.indicaLocalizacaoActual(coordinates);
-		return this.search.searchIt();
-		
-		
+		try {
+			return this.search.searchIt();
+		} catch (NoMerchantInArea e) {
+			System.err.println("Error: No merchant available.");
+			//e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<ComercianteInfo> redefineRaio(int i) {
 		this.search.redefineRaio(i);
-		return this.search.searchIt();
+		try {
+			return this.search.searchIt();
+		} catch (NoMerchantInArea e) {
+			System.err.println("Error: No merchant available.");
+			//e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<ComercianteInfo> redefinePeriodo(LocalDateTime start, LocalDateTime end) {
 		this.search.redefinePeriodo(start, end);
-		return this.search.searchIt();
+		try {
+			return this.search.searchIt();
+		} catch (NoMerchantInArea e) {
+			System.err.println("Error: No merchant available.");
+			//e.printStackTrace();
+		}
+		return null;
 	}
 
 	public List<ProdutoInfo> escolheComerciante(ComercianteInfo comercianteInfo) {

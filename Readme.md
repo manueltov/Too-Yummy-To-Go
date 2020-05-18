@@ -1,51 +1,65 @@
-Too Yummy To Go - Meta 4
+DCO - Too Yummy To Go
+---------------------
+
+
+O projecto de DCO vale 6 dos 20 valores da cadeira. Para aprovação a DCO é necessário obter pelo menos 2.8 em 6, sendo esses 2.8 arredondados às décimas.
+
+O projecto está dividido em quatro metas, cada uma representando avanços do projecto ao longo de cada sprint. Como estamos a seguir uma metodologia ágil, pretende-se ter algo a funcionar o mais rapidamente possível embora que não cumpra todos os requisitos.
+
+Sobre o projecto:
+
+**Nome:** Too Yummy To Go
+
+**Cliente:** Docentes de DCO do DI-FCUL
+
+**Descrição:** Uma aplicação que permite vender pacotes de produtos perecíveis que seriam desperdiçados de outra forma.
+
+
+
+
+Extra 1: API MonsterCard
 ========================
 
+1) Exemplo do uso da API para verificar a validade de um cartão:
 
-**Deadline:** 20 de Maio de 2020, 23:55, Hora de Lisboa
-
-**Equipa:** O trabalho deve ser feito em grupos de 3. Excepcionalmente serão aceites grupos de 2.
-
-**Dúvidas:** Dúvidas sobre o trabalho deverão ser feitas [nos issues do repositório da cadeira de DCO](https://git.alunos.di.fc.ul.pt/dco0001/dco_1920/issues).
-
-**Instruções de como começar:** No repositório local da meta 3 deverá executar os seguintes comandos para obter a última versão:
-
-```
-git pull enunciado master
+```java
+Card c = new Card("1234123412341234", "123", "05", "2021");
+MonsterCardAPI m = new MonsterCardAPI();
+boolean ok = m.isValid(c);
 ```
 
+2) Exemplo do uso da API para cativar 10 euros no cartão:
 
-**Para entregar:** Deverá fazer commit do seu código no sítio onde se encontra (pasta código). Esta pasta vai ser partilha entre a fase 3 e a fase 4.
-
-Para submeter:
-
-```
-git tag meta4
-git push origin meta4
+```java
+m.block(c, 10)
 ```
 
-Não cumprir estas instruções levará a que o projecto nem seja corrigido, resultando numa nota de 0.
 
-Fraude
-------
+3) Exemplo do uso da API para cativar 10 euros no cartão:
 
-Como futuro profissional, espera-se de si uma atitude irrepreensível,
-em termos éticos e deontológicos. Tenha pois o maior cuidado em
-respeitar e fazer respeitar a lei da criminalidade informática.
+```java
+m.charge(c, 10)
+```
 
-A nível académico, alunos detetados em situação de fraude ou plágio
-(plagiadores e plagiados) em alguma prova ficam reprovados à
-disciplina e serão alvo de processo disciplinar, o que levará a um
-registo dessa incidência no processo de aluno, podendo conduzir à
-suspensão letiva ou abandono da Universidade.
+Extra 2: API PortugueseExpress
+==============================
 
-Objectivo
----------
+1) Exemplo do uso da API para verificar a validade de um cartão:
+```java
+PortugueseExpress api = new PortugueseExpress();
+api.setNumber("1234123412341234")
+api.setCcv(123)
+api.setMonth(5)
+api.setYear(2018)
+boolean ok = api.validate()
+```
+ 
+2) Exemplo do uso da API para cativar 10 euros no cartão:
+```java
+api.block(10);
+```
 
-Nesta fase vamos melhorar o nosso código recorrendo a vários padrões GoF. Nomeadamente:
-
-
-1. Devem ser suportados ambos os meios de pagamento por cartão de crédito MonsterCard e PortugueseExpress, usando o padrão mais adequado.
-2. Os diferentes métodos de pesquisa devem ser abstraídos segundo o padrão Strategy.
-3. O comerciante deve ser notificado sempre que uma encomenda é feita com sucesso, de forma decoupled. (Dica: poderá alterar o cliente de forma a este registar um callback que faz print da informação da encomenda, de forma a poder preparar o pedido)
-4. Deverá escrever um teste JUnit que cobra o caso de uso login (UC2), bem como a verificação dos handlers a que tem acesso.
+3) Exemplo do uso da API para cativar 10 euros no cartão:
+```java
+api.charge(10);
+```

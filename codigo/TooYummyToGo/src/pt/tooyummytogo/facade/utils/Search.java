@@ -38,7 +38,7 @@ public class Search {
 		this.horaFim = end;
 	}
 
-	public List<ComercianteInfo> searchIt() {
+	public List<ComercianteInfo> searchIt() throws NoMerchantInArea {
 		
 		List<ComercianteInfo> merchCat = MerchantCatalog.getMerchantCatalog();
 		List<ComercianteInfo> merchInfo = new ArrayList<ComercianteInfo>();
@@ -56,7 +56,7 @@ public class Search {
 			}
 		}
 		if(merchInfo.isEmpty()) {
-			System.err.println("Merchant not found.");
+			throw new NoMerchantInArea();
 		}
 		return merchInfo;
 	}

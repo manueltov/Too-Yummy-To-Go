@@ -60,8 +60,10 @@ public class ClienteExemplo {
 		});
 
 		// UC6 + UC7
+		
 		Optional<Sessao> talvezSessao3 = ty2g.autenticar("Felismina", "hortadafcul");
 		talvezSessao3.ifPresent( (Sessao s) -> {
+			
 			EncomendarHandler lch = s.getEncomendarComerciantesHandler();
 			List<ComercianteInfo> cs = lch.indicaLocalizacaoActual(new PosicaoCoordenadas(34.5, 45.2));
 			

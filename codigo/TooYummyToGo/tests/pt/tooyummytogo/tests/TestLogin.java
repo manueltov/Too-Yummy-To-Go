@@ -2,13 +2,104 @@ package pt.tooyummytogo.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Optional;
+
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import pt.tooyummytogo.Sessao;
+import pt.tooyummytogo.facade.TooYummyToGo;
+import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
+import pt.tooyummytogo.facade.handlers.AdicionarTipoDeProdutoHandler;
+import pt.tooyummytogo.facade.handlers.EncomendarHandler;
+import pt.tooyummytogo.facade.handlers.RegistarComercianteHandler;
+import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
+
 class TestLogin {
+	
+	TooYummyToGo ty2g = new TooYummyToGo();
 
+	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testUtilizadorNormal() {
+		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
+		regHandler.registarUtilizador("Felismina", "hortadafcul");
+		Optional<Sessao> talvezSessao = ty2g.autenticar("Felismina", "hortadafcul");
+		assertNotEquals(Optional.empty(), talvezSessao);
 	}
+	
+	@Test
+	void testUtilizadorSemNomeComPass() {
+		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
+		regHandler.registarUtilizador("Felismina", "hortadafcul");
+		Optional<Sessao> talvezSessao = ty2g.autenticar("", "hortadafcul");
+		assertEquals(Optional.empty(), talvezSessao);
+	}
+	
+	@Test
+	void testUtilizadorSemNomeSemPass() {
+		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
+		regHandler.registarUtilizador("Felismina", "hortadafcul");
+		Optional<Sessao> talvezSessao = ty2g.autenticar("", "");
+		assertEquals(Optional.empty(), talvezSessao);
+	}
+	
+	@Test
+	void testUtilizadorComNomeSemPass() {
+		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
+		regHandler.registarUtilizador("Felismina", "hortadafcul");
+		Optional<Sessao> talvezSessao = ty2g.autenticar("Felismina", "");
+		assertEquals(Optional.empty(), talvezSessao);
+	}
+	
+	@Test
+	void testComercianteNormal() {
+		RegistarComercianteHandler regComHandler = ty2g.getRegistarComercianteHandler();
+		regComHandler.registarComerciante("Silvino", "bardoc2", new PosicaoCoordenadas(34.5, 45.2));
+		Optional<Sessao> talvezSessao = ty2g.autenticar("Silvino", "bardoc2");
+		assertNotEquals(Optional.empty(), talvezSessao);
+	}
+	
+	@Test
+	void testComercianteComNomeSemPass() {
+		RegistarComercianteHandler regComHandler = ty2g.getRegistarComercianteHandler();
+		regComHandler.registarComerciante("Silvino", "bardoc2", new PosicaoCoordenadas(34.5, 45.2));
+		Optional<Sessao> talvezSessao = ty2g.autenticar("Silvino", "");
+		assertEquals(Optional.empty(), talvezSessao);
+	}
+	
+	@Test
+	void testComercianteSemNomeComPass() {
+		RegistarComercianteHandler regComHandler = ty2g.getRegistarComercianteHandler();
+		regComHandler.registarComerciante("Silvino", "bardoc2", new PosicaoCoordenadas(34.5, 45.2));
+		Optional<Sessao> talvezSessao = ty2g.autenticar("", "bardoc2");
+		assertEquals(Optional.empty(), talvezSessao);
+	}
+	
+	@Test
+	void testComercianteSemNomeSemPass() {
+		RegistarComercianteHandler regComHandler = ty2g.getRegistarComercianteHandler();
+		regComHandler.registarComerciante("Silvino", "bardoc2", new PosicaoCoordenadas(34.5, 45.2));
+		Optional<Sessao> talvezSessao = ty2g.autenticar("", "");
+		assertEquals(Optional.empty(), talvezSessao);
+	}
+	
+	@Test
+	void testUtilizadorComAcessoAHandlerDoComerciante() {
+		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
+		regHandler.registarUtilizador("Felismina", "hortadafcul");
+		Optional<Sessao> talvezSessao = ty2g.autenticar("Felismina", "hortadafcul");
+		AdicionarTipoDeProdutoHandler atp = talvezSessao.tipoDeProdutoHandler();
+		
+		assertThrows(Exception.class, () -> {});
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
 
-}
+

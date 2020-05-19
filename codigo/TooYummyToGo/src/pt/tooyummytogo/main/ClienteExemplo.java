@@ -49,8 +49,26 @@ public class ClienteExemplo {
 			
 			List<String> listaTiposDeProdutos = cpv.inicioDeProdutosHoje();
 			
-			cpv.indicaProduto(listaTiposDeProdutos.get(0), 10); // Pão
-			cpv.indicaProduto(listaTiposDeProdutos.get(2), 5); // Mil-folhas
+			if(listaTiposDeProdutos.get(0).equals(null)) {
+				AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
+				Random r = new Random();
+				atp.registaTipoDeProduto("Pão", r.nextDouble() * 10);
+				cpv.indicaProduto(listaTiposDeProdutos.get(0), 10);
+			}else {
+				cpv.indicaProduto(listaTiposDeProdutos.get(0), 10); // Pão
+			}
+			
+			if(listaTiposDeProdutos.get(2).equals(null)) {
+				AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
+				Random r = new Random();
+				atp.registaTipoDeProduto("Mil-folhas", r.nextDouble() * 10);
+				cpv.indicaProduto(listaTiposDeProdutos.get(2), 10);
+			}else {
+				cpv.indicaProduto(listaTiposDeProdutos.get(2), 10); // Mil-folhas
+			}
+			
+			//cpv.indicaProduto(listaTiposDeProdutos.get(0), 10); // Pão
+			//cpv.indicaProduto(listaTiposDeProdutos.get(2), 5); // Mil-folhas
 			
 			// TODO: Não implementada a extensão 3a.
 			

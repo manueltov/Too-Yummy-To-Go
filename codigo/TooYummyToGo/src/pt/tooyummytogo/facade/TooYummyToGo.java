@@ -27,6 +27,7 @@ public class TooYummyToGo {
 	 * Returns an optional Session representing the authenticated user.
 	 * @param username
 	 * @param password
+	 * @requires currentUser != currentMerch
 	 * @return
 	 * 
 	 * UC2
@@ -34,6 +35,7 @@ public class TooYummyToGo {
 	public Optional<Sessao> autenticar(String username, String password) {
 		Optional<User> currentUser = userCat.tryLogin(username, password);
 		Optional<ComercianteInfo> currentMerch = merchCat.tryLogin(username, password);
+		// if a User has an merchant account or vice-versa their credentials need to be different otherwise the User will always sign in as a Merchant
 		if(currentMerch.isPresent()) {
 			return Optional.of(new Sessao (new ComercianteInfo(username)));	
 		}else if (currentUser.isPresent()) {

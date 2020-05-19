@@ -2,15 +2,15 @@ package pt.tooyummytogo.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import pt.tooyummytogo.Sessao;
-import pt.tooyummytogo.exceptions.OnlyMerhantException;
 import pt.tooyummytogo.facade.TooYummyToGo;
+import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.handlers.AdicionarTipoDeProdutoHandler;
 import pt.tooyummytogo.facade.handlers.EncomendarHandler;
@@ -20,7 +20,6 @@ import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
 class TestLogin {
 	
 	TooYummyToGo ty2g = new TooYummyToGo();
-
 	
 	@Test
 	void testUtilizadorNormal() {
@@ -87,22 +86,39 @@ class TestLogin {
 	}
 	
 	@Test
-	void testUtilizadorComAcessoAHandlerDoComerciante() {
-		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
-		regHandler.registarUtilizador("Felismina", "hortadafcul");
-		Optional<Sessao> talvezSessao = ty2g.autenticar("Felismina", "hortadafcul");
+    void testUtilizadorComAcessoAHandlerDoComerciante() {
+        RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
+        regHandler.registarUtilizador("Felismina", "hortadafcul");
+        Optional<Sessao> talvezSessao = ty2g.autenticar("Felismina", "hortadafcul");
+
+        assertThrows(NullPointerException.class, () -> {
+
+            talvezSessao.ifPresent( (Sessao s) -> {
+                AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
+                Random r = new Random();
+                for (String tp : new String[] {"PÃ£o", "PÃ£o de LÃ³", "Mil-folhas"}) {
+                    atp.registaTipoDeProduto(tp, r.nextDouble() * 10);
+                }
+            });
+        });
+    }
+	
+	@Test
+	void testComercianteComAcessoAHandlerDoUtilizador() {
+		RegistarComercianteHandler regComHandler = ty2g.getRegistarComercianteHandler();
+		regComHandler.registarComerciante("Silvino", "bardoc2", new PosicaoCoordenadas(34.5, 45.2));
+		Optional<Sessao> talvezSessao3 = ty2g.autenticar("Silvino", "bardoc2");
 		
 		assertThrows(NullPointerException.class, () -> {
 			
-			talvezSessao.ifPresent( (Sessao s) -> {
-				AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
-				Random r = new Random();
-				for (String tp : new String[] {"Pão", "Pão de Ló", "Mil-folhas"}) {
-					atp.registaTipoDeProduto(tp, r.nextDouble() * 10);
-				}			
-			});
-			
+			talvezSessao3.ifPresent( (Sessao s) -> {
+				EncomendarHandler lch = s.getEncomendarComerciantesHandler();
+				List<ComercianteInfo> cs = lch.indicaLocalizacaoActual(new PosicaoCoordenadas(34.5, 45.2));
 		});
+	});
+	
+	
+	
 	}
 
 }

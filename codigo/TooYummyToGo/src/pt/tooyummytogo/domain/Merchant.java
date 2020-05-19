@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import pt.tooyummytogo.exceptions.ProductAlreadyExists;
+import pt.tooyummytogo.exceptions.ProductAlreadyExistsException;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
 
@@ -32,9 +32,9 @@ public class Merchant {
 		return this.password.equals(pw);
 	}
 
-	public int addProductType(String tp, double price) throws ProductAlreadyExists {
+	public int addProductType(String tp, double price) throws ProductAlreadyExistsException {
 		if(lstProducts.contains(getProduct(tp)))
-			throw new ProductAlreadyExists();
+			throw new ProductAlreadyExistsException();
 		this.lstProducts.add(new Product(tp, price));
 		return lstProducts.size()-1;
 	}

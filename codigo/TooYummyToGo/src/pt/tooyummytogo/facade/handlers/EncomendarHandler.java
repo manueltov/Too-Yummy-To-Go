@@ -10,7 +10,7 @@ import pt.tooyummytogo.domain.Delivery;
 import pt.tooyummytogo.domain.Order;
 import pt.tooyummytogo.domain.ProductInSale;
 import pt.tooyummytogo.domain.User;
-import pt.tooyummytogo.exceptions.NoMerchantInArea;
+import pt.tooyummytogo.exceptions.NoMerchantInAreaException;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
@@ -35,7 +35,7 @@ public class EncomendarHandler {
 		this.search.indicaLocalizacaoActual(coordinates);
 		try {
 			return this.search.searchIt();
-		} catch (NoMerchantInArea e) {
+		} catch (NoMerchantInAreaException e) {
 			System.err.println("Error: No merchant available.");
 			//e.printStackTrace();
 		}
@@ -46,7 +46,7 @@ public class EncomendarHandler {
 		this.search.redefineRaio(i);
 		try {
 			return this.search.searchIt();
-		} catch (NoMerchantInArea e) {
+		} catch (NoMerchantInAreaException e) {
 			System.err.println("Error: No merchant available.");
 			//e.printStackTrace();
 		}
@@ -57,7 +57,7 @@ public class EncomendarHandler {
 		this.search.redefinePeriodo(start, end);
 		try {
 			return this.search.searchIt();
-		} catch (NoMerchantInArea e) {
+		} catch (NoMerchantInAreaException e) {
 			System.err.println("Error: No merchant available.");
 			//e.printStackTrace();
 		}

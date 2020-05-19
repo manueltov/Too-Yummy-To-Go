@@ -3,11 +3,13 @@ package pt.tooyummytogo.tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Optional;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import pt.tooyummytogo.Sessao;
+import pt.tooyummytogo.exceptions.OnlyMerhantException;
 import pt.tooyummytogo.facade.TooYummyToGo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.handlers.AdicionarTipoDeProdutoHandler;
@@ -89,12 +91,21 @@ class TestLogin {
 		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
 		regHandler.registarUtilizador("Felismina", "hortadafcul");
 		Optional<Sessao> talvezSessao = ty2g.autenticar("Felismina", "hortadafcul");
-		AdicionarTipoDeProdutoHandler atp = talvezSessao.tipoDeProdutoHandler();
 		
-		assertThrows(Exception.class, () -> {});
-		}
-	
+		assertThrows(NullPointerException.class, () -> {
+			
+			talvezSessao.ifPresent( (Sessao s) -> {
+				AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
+				Random r = new Random();
+				for (String tp : new String[] {"Pão", "Pão de Ló", "Mil-folhas"}) {
+					atp.registaTipoDeProduto(tp, r.nextDouble() * 10);
+				}			
+			});
+			
+		});
 	}
+
+}
 	
 	
 	

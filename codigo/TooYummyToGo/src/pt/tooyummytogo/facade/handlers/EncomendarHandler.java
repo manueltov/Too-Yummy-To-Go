@@ -10,58 +10,40 @@ import pt.tooyummytogo.domain.Delivery;
 import pt.tooyummytogo.domain.Order;
 import pt.tooyummytogo.domain.ProductInSale;
 import pt.tooyummytogo.domain.User;
-import pt.tooyummytogo.exceptions.NoMerchantInAreaException;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
-import pt.tooyummytogo.facade.utils.Search;
+import pt.tooyummytogo.facade.utils.strategies.*;
+
 
 public class EncomendarHandler {
 
 	private User currentUser;
 	private ComercianteInfo merchInfo;
 	private Order ord;
-	private Delivery delivery;	
-	
-	private Search search;
+	private Delivery delivery;
+	private PosicaoCoordenadas coordinates;
 	
 	public EncomendarHandler(User currentUser) {
 		this.currentUser = currentUser;
-		this.search = new Search();
 		ord = this.currentUser.createOrder();
 	}
 
 	public List<ComercianteInfo> indicaLocalizacaoActual(PosicaoCoordenadas coordinates) {
-		this.search.indicaLocalizacaoActual(coordinates);
-		try {
-			return this.search.searchIt();
-		} catch (NoMerchantInAreaException e) {
-			System.err.println("Error: No merchant available.");
-			//e.printStackTrace();
-		}
-		return null;
+		SearchPorDefault s = new SearchPorDefault();
+		this.coordinates = coordinates;
+		return s.indicaLocalizacaoActual(coordinates);
 	}
 
 	public List<ComercianteInfo> redefineRaio(int i) {
-		this.search.redefineRaio(i);
-		try {
-			return this.search.searchIt();
-		} catch (NoMerchantInAreaException e) {
-			System.err.println("Error: No merchant available.");
-			//e.printStackTrace();
-		}
-		return null;
+		SearchPorRaio s = new SearchPorRaio();
+		Float raio = (float) i;
+		return s.redefineRaio(raio,this.coordinates);
 	}
 
 	public List<ComercianteInfo> redefinePeriodo(LocalDateTime start, LocalDateTime end) {
-		this.search.redefinePeriodo(start, end);
-		try {
-			return this.search.searchIt();
-		} catch (NoMerchantInAreaException e) {
-			System.err.println("Error: No merchant available.");
-			//e.printStackTrace();
-		}
-		return null;
+		SearchPorPeriodo s = new SearchPorPeriodo();
+		return s.redefinePeriodo(start,end,this.coordinates);
 	}
 
 	public List<ProdutoInfo> escolheComerciante(ComercianteInfo comercianteInfo) {

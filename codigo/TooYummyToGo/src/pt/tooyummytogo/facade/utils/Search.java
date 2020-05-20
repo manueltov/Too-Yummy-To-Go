@@ -11,6 +11,15 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class Search {
 
+	/**
+	 * 
+	 * @param horaInicio start hour of availability for deliveries
+	 * @param horaFim hour of end of availability
+	 * @param raio range in metters
+	 * @param coordinates Local coordinates of the user
+	 * @return
+	 * @throws NoMerchantInAreaException
+	 */
 	public List<ComercianteInfo> searchIt(LocalDateTime horaInicio, LocalDateTime horaFim, Float raio,
 			PosicaoCoordenadas coordinates) throws NoMerchantInAreaException {
 

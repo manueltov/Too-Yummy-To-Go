@@ -12,10 +12,15 @@ public class MerchantCatalog {
 
 	private static List<Merchant> merchantCat;
 
+	/**Constructor of merchant Catalog */
 	public MerchantCatalog() {
 		merchantCat = new ArrayList<>();
 	}
 
+	/**
+	 * 
+	 * @return list of merchants
+	 */
 	public static List<ComercianteInfo> getMerchantCatalog() {
 		List<ComercianteInfo> aux = new ArrayList<ComercianteInfo>();
 		for (Merchant merch : merchantCat) {
@@ -24,6 +29,13 @@ public class MerchantCatalog {
 		return aux;
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @param posi Local Coordinates of the merchant's business
+	 * @throws MerchantAlreadyExistsException
+	 */
 	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi)
 			throws MerchantAlreadyExistsException {
 		if (merchantCat.contains(getMerchant(username))) {
@@ -32,6 +44,11 @@ public class MerchantCatalog {
 		merchantCat.add(new Merchant(username, password, posi));
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @return merchant object if found
+	 */
 	public static Merchant getMerchant(String username) {
 		for (Merchant merch : merchantCat) {
 			if (merch.getUsername().equals(username))
@@ -40,6 +57,12 @@ public class MerchantCatalog {
 		return null; // TODO return exception Merchant does not exist, era melhor
 	}
 
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return login token if true
+	 */
 	public Optional<ComercianteInfo> tryLogin(String username, String password) {
 		for (Merchant merchant : merchantCat) {
 			if (merchant.getUsername().equals(username) && merchant.confirmPassword(password)) {

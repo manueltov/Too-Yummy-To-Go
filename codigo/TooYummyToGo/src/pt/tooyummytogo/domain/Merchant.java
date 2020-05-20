@@ -61,7 +61,7 @@ public class Merchant {
 	}
 	
 	public void indicaProduto(String tp, int quantity) {
-		this.productsForSale.addProductForSale(getProduct(tp), quantity);
+		this.productsForSale.addProductForSale(getProduct(tp), quantity); //if tp doenst exist make exception
 	}
 	
 	public ProductsForSale getProductsForSale() {

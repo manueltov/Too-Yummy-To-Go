@@ -16,7 +16,6 @@ import pt.tooyummytogo.facade.utils.paymentAdapter.PaymentAdapter;
 import pt.tooyummytogo.facade.utils.paymentAdapter.PluginsPaymentFactory;
 import pt.tooyummytogo.facade.utils.strategies.*;
 
-
 public class EncomendarHandler {
 
 	private User currentUser;
@@ -24,7 +23,7 @@ public class EncomendarHandler {
 	private Order ord;
 	private Delivery delivery;
 	private PosicaoCoordenadas coordinates;
-	
+
 	public EncomendarHandler(User currentUser) {
 		this.currentUser = currentUser;
 		ord = this.currentUser.createOrder();
@@ -39,12 +38,12 @@ public class EncomendarHandler {
 	public List<ComercianteInfo> redefineRaio(int i) {
 		SearchPorRaioStrategy s = new SearchPorRaioStrategy();
 		Float raio = (float) i;
-		return s.redefineRaio(raio,this.coordinates);
+		return s.redefineRaio(raio, this.coordinates);
 	}
 
 	public List<ComercianteInfo> redefinePeriodo(LocalDateTime start, LocalDateTime end) {
 		SearchPorPeriodoStrategy s = new SearchPorPeriodoStrategy();
-		return s.redefinePeriodo(start,end,this.coordinates);
+		return s.redefinePeriodo(start, end, this.coordinates);
 	}
 
 	public List<ProdutoInfo> escolheComerciante(ComercianteInfo comercianteInfo) {
@@ -54,7 +53,7 @@ public class EncomendarHandler {
 
 	public void indicaProduto(ProdutoInfo prd, int quantity) {
 		ProductInSale prdInSale = this.merchInfo.getProductsForSale().getProductInSale(prd.getProductType());
-		if(prdInSale.getQuantity() >= quantity) {
+		if (prdInSale.getQuantity() >= quantity) {
 			ProductInSale prdToOrder = prdInSale.clone();
 			prdToOrder.setQuantity(quantity);
 			this.ord.addProductToOrder(prdToOrder);
@@ -65,42 +64,41 @@ public class EncomendarHandler {
 	}
 
 	public String indicaPagamento(String cardNumber, String monthYear, String ccv) {
-		
-		//Delivery
-		delivery = new Delivery(this.currentUser, this.merchInfo, this.ord);
-		
 
-		if(!delivery.isPayed()) {
-			
+		// Delivery
+		delivery = new Delivery(this.currentUser, this.merchInfo, this.ord);
+
+		if (!delivery.isPayed()) {
+
 			double total = delivery.totalPrice();
 			System.out.println(total);
-			
+
 			List<PaymentAdapter> paymentMethodsList = PluginsPaymentFactory.getPaymentPluginsList();
-			
-			//Use a random payment method
+
+			// Use a random payment method
 			Random rd = new Random();
 			System.out.println();
 			int elemIdx = rd.nextInt(paymentMethodsList.size());
-			
-			//Uses plugin factory
+
+			// Uses plugin factory
 			PaymentAdapter paymentMethod = paymentMethodsList.get(elemIdx);
-			//System.out.println("Vai pagar com: " + paymentMethod.getClass());
-			
-			//Adapter
+			// System.out.println("Vai pagar com: " + paymentMethod.getClass());
+
+			// Adapter
 			paymentMethod.setCard(cardNumber, ccv, monthYear);
-			if(paymentMethod.validate()) {
+			if (paymentMethod.validate()) {
 				paymentMethod.block(total);
 				paymentMethod.charge(total);
 			}
-			
+
 			delivery.setPayed(true);
 		}
-		
+
 		String codigoReserva = delivery.generateCode();
-		
-		//evento de notificaçao
+
+		// evento de notificaçao
 		Observable obs = new Observable();
-		obs.notificar(codigoReserva,this.merchInfo);
+		obs.notificar(codigoReserva, this.merchInfo);
 		//
 
 		return codigoReserva;

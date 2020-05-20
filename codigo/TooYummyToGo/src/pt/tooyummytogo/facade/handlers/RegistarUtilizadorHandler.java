@@ -4,7 +4,7 @@ import pt.tooyummytogo.domain.UserCatalog;
 import pt.tooyummytogo.exceptions.UserAlreadyExistsException;
 
 public class RegistarUtilizadorHandler {
-	
+
 	private UserCatalog userCat;
 
 	public RegistarUtilizadorHandler(UserCatalog userCat) {
@@ -13,16 +13,17 @@ public class RegistarUtilizadorHandler {
 
 	/**
 	 * Regista um utilizador normal.
+	 * 
 	 * @param Username
 	 * @param Password
 	 * @ensures existe um utilizador com esse username
 	 */
 	public void registarUtilizador(String username, String password) {
 		try {
-			this.userCat.adicionaUtilizador(username,password);
+			this.userCat.adicionaUtilizador(username, password);
 		} catch (UserAlreadyExistsException e) {
 			System.err.println("Error: User already exists.");
-			//e.printStackTrace(); //Uncomment to see error 
+			// e.printStackTrace(); //Uncomment to see error
 		}
 	}
 }

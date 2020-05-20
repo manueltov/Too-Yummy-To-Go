@@ -14,7 +14,7 @@ import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
  * Esta é a classe do sistema.
  */
 public class TooYummyToGo {
-	
+
 	private UserCatalog userCat = new UserCatalog();
 	private MerchantCatalog merchCat = new MerchantCatalog();
 
@@ -22,25 +22,27 @@ public class TooYummyToGo {
 	public RegistarUtilizadorHandler getRegistarUtilizadorHandler() {
 		return new RegistarUtilizadorHandler(userCat);
 	}
-	
+
 	/**
 	 * Returns an optional Session representing the authenticated user.
+	 * 
 	 * @param username
 	 * @param password
 	 * @requires currentUser != currentMerch
 	 * @return
 	 * 
-	 * UC2
+	 *         UC2
 	 */
 	public Optional<Sessao> autenticar(String username, String password) {
 		Optional<User> currentUser = userCat.tryLogin(username, password);
 		Optional<ComercianteInfo> currentMerch = merchCat.tryLogin(username, password);
-		// if a User has an merchant account or vice-versa their credentials need to be different otherwise the User will always sign in as a Merchant
-		if(currentMerch.isPresent()) {
-			return Optional.of(new Sessao (new ComercianteInfo(username)));	
-		}else if (currentUser.isPresent()) {
-			return Optional.of(new Sessao (currentUser.get()));
-		}else {
+		// if a User has an merchant account or vice-versa their credentials need to be
+		// different otherwise the User will always sign in as a Merchant
+		if (currentMerch.isPresent()) {
+			return Optional.of(new Sessao(new ComercianteInfo(username)));
+		} else if (currentUser.isPresent()) {
+			return Optional.of(new Sessao(currentUser.get()));
+		} else {
 			return Optional.empty();
 		}
 	}
@@ -49,8 +51,5 @@ public class TooYummyToGo {
 	public RegistarComercianteHandler getRegistarComercianteHandler() {
 		return new RegistarComercianteHandler(merchCat);
 	}
-	
-	
-	
 
 }

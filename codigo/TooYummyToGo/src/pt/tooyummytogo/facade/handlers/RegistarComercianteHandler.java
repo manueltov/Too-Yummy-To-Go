@@ -5,7 +5,7 @@ import pt.tooyummytogo.exceptions.MerchantAlreadyExistsException;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class RegistarComercianteHandler {
-	
+
 	private MerchantCatalog merchCat;
 
 	public RegistarComercianteHandler(MerchantCatalog merchCat) {
@@ -14,16 +14,17 @@ public class RegistarComercianteHandler {
 
 	/**
 	 * Regista um Comerciante.
+	 * 
 	 * @param Username
 	 * @param Password
 	 * @ensures existe um comerciante com esse username
 	 */
 	public void registarComerciante(String username, String password, PosicaoCoordenadas p) {
 		try {
-			this.merchCat.adicionaMerchant(username,password,p);
+			this.merchCat.adicionaMerchant(username, password, p);
 		} catch (MerchantAlreadyExistsException e) {
 			System.err.println("Error: Merchant already exists.");
-			//e.printStackTrace(); //uncomment to see error
+			// e.printStackTrace(); //uncomment to see error
 		}
 	}
 

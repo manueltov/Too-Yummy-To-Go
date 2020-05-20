@@ -3,7 +3,6 @@ package pt.tooyummytogo.facade.handlers;
 import pt.tooyummytogo.exceptions.ProductAlreadyExistsException;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
-
 public class AdicionarTipoDeProdutoHandler {
 
 	private ComercianteInfo currentMerchant;
@@ -17,7 +16,7 @@ public class AdicionarTipoDeProdutoHandler {
 			this.currentMerchant.addProductType(product, price);
 		} catch (ProductAlreadyExistsException e) {
 			System.err.println("Error: Product already exists.");
-			//e.printStackTrace(); //uncomment to see error
+			// e.printStackTrace(); //uncomment to see error
 		}
 	}
 }

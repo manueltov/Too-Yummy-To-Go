@@ -13,27 +13,27 @@ public class PluginsPaymentFactory {
 
 	public static List<PaymentAdapter> getPaymentPluginsList() {
 		List<PaymentAdapter> plugins = new ArrayList<>();
-		
+
 		Properties paymentProp = new Properties();
 		try {
 			paymentProp.load(new FileInputStream(new File("payment.properties")));
-			
+
 			// add default to first element of the list
 			String defaultPaymentPlugin = paymentProp.getProperty("defaultPaymentPlugin");
 			addToList(plugins, defaultPaymentPlugin);
-			
+
 			String possiblePaymentPlugins = paymentProp.getProperty("possiblePaymentPlugins");
 			for (String paymentMethod : possiblePaymentPlugins.split(",")) {
 				addToList(plugins, paymentMethod);
 			}
-			
+
 		} catch (IOException e) {
-			//caso falhe a leitura de ficheiro o monsterCard serah a predefinicao
+			// caso falhe a leitura de ficheiro o monsterCard serah a predefinicao
 			plugins.add(new MonsterCardAdapter());
 		}
 		return plugins;
 	}
-	
+
 	private static void addToList(List<PaymentAdapter> plugins, String paymentMethod) {
 		try {
 			Class<?> klass = Class.forName(paymentMethod);

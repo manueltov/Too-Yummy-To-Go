@@ -21,8 +21,7 @@ public class ColocarProdutoHandler {
 	public void indicaProduto(String tp, int quantity) {
 		this.currentMerchant.indicaProduto(tp, quantity);
 	}
-		
-	
+
 	public void confirma(LocalDateTime start, LocalDateTime end) {
 		this.currentMerchant.confirmaHoras(start, end);
 	}

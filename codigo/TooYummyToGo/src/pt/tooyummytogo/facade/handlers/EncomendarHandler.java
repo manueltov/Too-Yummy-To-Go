@@ -2,10 +2,13 @@ package pt.tooyummytogo.facade.handlers;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 import com.monstercard.Card;
 import com.monstercard.MonsterCardAPI;
 
+import pt.portugueseexpress.InvalidCardException;
+import pt.portugueseexpress.PortugueseExpress;
 import pt.tooyummytogo.domain.Delivery;
 import pt.tooyummytogo.domain.Order;
 import pt.tooyummytogo.domain.ProductInSale;
@@ -83,21 +86,76 @@ public class EncomendarHandler {
 
 	public String indicaPagamento(String number, String monthYear, String ccv) {
 		
-		//Credit Card
-		String[] monthAndYear = monthYear.split("/");
-		Card c = new Card(number, ccv, monthAndYear[0], monthAndYear[1]);
-		MonsterCardAPI m = new MonsterCardAPI();
-		
 		//Delivery
 		delivery = new Delivery(this.currentUser, this.merchInfo, this.ord);
 		
-		//Payment
-		if(!delivery.isPayed()) {
-			double total = delivery.totalPrice();
-			m.block(c, total);
-			m.charge(c, total);
-			delivery.setPayed(true);
+		
+		Random rd = new Random();
+		if(rd.nextBoolean()) {
+			
+			///////////////////////////////////////////////////////////////////////////////////////
+			System.out.println("Vai pagar com PortugueseExpress");
+			/*
+			* API PortugueseExpress
+			*/
+			
+			PortugueseExpress api = new PortugueseExpress();
+			
+			api.setNumber(number);
+			
+			int ccv_number = Integer.parseInt(ccv);
+			api.setCcv(ccv_number);
+			
+			String[] monthAndYear = monthYear.split("/");
+			int month = Integer.parseInt(monthAndYear[0]);
+			int year = Integer.parseInt("20"+monthAndYear[1]);
+			api.setMonth(month);
+			api.setYear(year);
+			
+			if(api.validate()) {
+				try {
+					
+					//Payment
+					if(!delivery.isPayed()) {
+						double total = delivery.totalPrice();
+						api.block(total);
+						api.charge(total);
+						delivery.setPayed(true);
+					}
+					
+				} catch (InvalidCardException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			///////////////////////////////////////////////////////////////////////////////////////
+			
+		} else {
+			
+			///////////////////////////////////////////////////////////////////////////////////////
+			System.out.println("Vai pagar com MonsterCard");
+			/*
+			* API MonsterCard
+			*/
+			
+			//Credit Card
+			String[] monthAndYear = monthYear.split("/");
+			Card c = new Card(number, ccv, monthAndYear[0], monthAndYear[1]);
+			MonsterCardAPI m = new MonsterCardAPI();
+			
+			
+			//Payment
+			if(!delivery.isPayed()) {
+				double total = delivery.totalPrice();
+				m.block(c, total);
+				m.charge(c, total);
+				delivery.setPayed(true);
+			}
+			///////////////////////////////////////////////////////////////////////////////////////
+			
 		}
+	
 		
 		String codigoReserva = delivery.generateCode();
 		

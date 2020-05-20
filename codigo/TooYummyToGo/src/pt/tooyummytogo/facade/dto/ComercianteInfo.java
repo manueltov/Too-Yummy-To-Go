@@ -8,6 +8,7 @@ import pt.tooyummytogo.domain.MerchantCatalog;
 import pt.tooyummytogo.domain.Product;
 import pt.tooyummytogo.domain.ProductsForSale;
 import pt.tooyummytogo.exceptions.ProductAlreadyExistsException;
+import pt.tooyummytogo.exceptions.ProductNotFoundException;
 
 public class ComercianteInfo {
 
@@ -29,11 +30,11 @@ public class ComercianteInfo {
 		return this.merch.getProductsStringList();
 	}
 
-	public Product getProduct(String tp) {
+	public Product getProduct(String tp) throws ProductNotFoundException {
 		return this.merch.getProduct(tp);
 	}
 
-	public void indicaProduto(String tp, int quantity) {
+	public void indicaProduto(String tp, int quantity) throws ProductNotFoundException {
 		this.merch.indicaProduto(tp, quantity);
 	}
 

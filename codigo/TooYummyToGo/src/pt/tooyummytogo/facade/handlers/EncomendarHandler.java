@@ -71,13 +71,11 @@ public class EncomendarHandler {
 		if (!delivery.isPayed()) {
 
 			double total = delivery.totalPrice();
-			System.out.println(total);
 
 			List<PaymentAdapter> paymentMethodsList = PluginsPaymentFactory.getPaymentPluginsList();
 
 			// Use a random payment method
 			Random rd = new Random();
-			System.out.println();
 			int elemIdx = rd.nextInt(paymentMethodsList.size());
 
 			// Uses plugin factory

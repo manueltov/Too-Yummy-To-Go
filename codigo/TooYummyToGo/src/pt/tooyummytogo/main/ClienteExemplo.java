@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import pt.tooyummytogo.Sessao;
+import pt.tooyummytogo.exceptions.ProductNotFoundException;
 import pt.tooyummytogo.facade.TooYummyToGo;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
@@ -19,74 +20,71 @@ import pt.tooyummytogo.facade.handlers.RegistarUtilizadorHandler;
 public class ClienteExemplo {
 	public static void main(String[] args) {
 		TooYummyToGo ty2g = new TooYummyToGo();
-		
+
 		// UC1
 		RegistarUtilizadorHandler regHandler = ty2g.getRegistarUtilizadorHandler();
 		regHandler.registarUtilizador("Felismina", "hortadafcul");
 
-
 		// UC3
 		RegistarComercianteHandler regComHandler = ty2g.getRegistarComercianteHandler();
-		
+
 		regComHandler.registarComerciante("Silvino", "bardoc2", new PosicaoCoordenadas(34.5, 45.2));
 		regComHandler.registarComerciante("Maribel", "torredotombo", new PosicaoCoordenadas(33.5, 45.2));
-		
+
 		// UC4
 		Optional<Sessao> talvezSessao = ty2g.autenticar("Silvino", "bardoc2");
-		talvezSessao.ifPresent( (Sessao s) -> {
+		talvezSessao.ifPresent((Sessao s) -> {
 			AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
 			Random r = new Random();
-			for (String tp : new String[] {"P√£o", "P√£o de L√≥", "Mil-folhas"}) {
+			for (String tp : new String[] { "P„o", "P„o de LÛ", "Mil-folhas" }) {
 				atp.registaTipoDeProduto(tp, r.nextDouble() * 10);
 			}
 		});
 
 		// UC5
 		Optional<Sessao> talvezSessao2 = ty2g.autenticar("Silvino", "bardoc2");
-		talvezSessao2.ifPresent( (Sessao s) -> {
-			
+		talvezSessao2.ifPresent((Sessao s) -> {
+
 			ColocarProdutoHandler cpv = s.getColocarProdutoHandler();
-			
+
 			List<String> listaTiposDeProdutos = cpv.inicioDeProdutosHoje();
-			
-			if(listaTiposDeProdutos.get(0).equals(null)) {
+
+			try {
+				cpv.indicaProduto(listaTiposDeProdutos.get(0), 10); // P„o
+			} catch (ProductNotFoundException e) {
+				// To add a product for sale, first the product needs to be added to the
+				// products of that merchant
+				// Extens„o 3a.
 				AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
 				Random r = new Random();
-				atp.registaTipoDeProduto("P√£o", r.nextDouble() * 10);
-				cpv.indicaProduto(listaTiposDeProdutos.get(0), 10);
-			}else {
-				cpv.indicaProduto(listaTiposDeProdutos.get(0), 10); // P√£o
+				atp.registaTipoDeProduto("P„o", r.nextDouble() * 10);
 			}
-			
-			if(listaTiposDeProdutos.get(2).equals(null)) {
+			try {
+				cpv.indicaProduto(listaTiposDeProdutos.get(2), 5); // Mil-folhas
+			} catch (ProductNotFoundException e) {
+				// To add a product for sale, first the product needs to be added to the
+				// products of that merchant
+				// Extens„o 3a.
 				AdicionarTipoDeProdutoHandler atp = s.adicionarTipoDeProdutoHandler();
 				Random r = new Random();
 				atp.registaTipoDeProduto("Mil-folhas", r.nextDouble() * 10);
-				cpv.indicaProduto(listaTiposDeProdutos.get(2), 10);
-			}else {
-				cpv.indicaProduto(listaTiposDeProdutos.get(2), 10); // Mil-folhas
 			}
-			
-			//cpv.indicaProduto(listaTiposDeProdutos.get(0), 10); // P√£o
-			//cpv.indicaProduto(listaTiposDeProdutos.get(2), 5); // Mil-folhas
-			
-			// TODO: N√£o implementada a extens√£o 3a.
-			
+
 			cpv.confirma(LocalDateTime.now(), LocalDateTime.now().plusHours(2));
-			
-			System.out.println("Produtos dispon√≠veis");
+
+			System.out.println("Produtos disponÌveis");
 		});
 
 		// UC6 + UC7
 		Optional<Sessao> talvezSessao3 = ty2g.autenticar("Felismina", "hortadafcul");
-		talvezSessao3.ifPresent( (Sessao s) -> {
+		talvezSessao3.ifPresent((Sessao s) -> {
 			EncomendarHandler lch = s.getEncomendarComerciantesHandler();
 			List<ComercianteInfo> cs = lch.indicaLocalizacaoActual(new PosicaoCoordenadas(34.5, 45.2));
-			
+
 			for (ComercianteInfo i : cs) {
 				System.out.println(i);
 			}
-			
+
 			boolean redefineRaio = false;
 			if (redefineRaio) {
 				cs = lch.redefineRaio(100);
@@ -94,7 +92,7 @@ public class ClienteExemplo {
 					System.out.println(i);
 				}
 			}
-			
+
 			boolean redefinePeriodo = false;
 			if (redefinePeriodo) {
 				cs = lch.redefinePeriodo(LocalDateTime.now(), LocalDateTime.now().plusHours(1));
@@ -102,15 +100,15 @@ public class ClienteExemplo {
 					System.out.println(i);
 				}
 			}
-			
-			// A partir de agora √© UC7
+
+			// A partir de agora È UC7
 			List<ProdutoInfo> ps = lch.escolheComerciante(cs.get(0));
 			for (ProdutoInfo p : ps) {
 				lch.indicaProduto(p, 1); // Um de cada
 			}
 			String codigoReserva = lch.indicaPagamento("365782312312", "02/21", "765");
-			System.out.println("Reserva " + codigoReserva + " feita com sucesso"); 
-						
+			System.out.println("Reserva " + codigoReserva + " feita com sucesso");
+
 		});
 
 	}

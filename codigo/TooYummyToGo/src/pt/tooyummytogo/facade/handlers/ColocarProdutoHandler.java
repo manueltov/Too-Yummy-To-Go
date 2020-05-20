@@ -3,6 +3,7 @@ package pt.tooyummytogo.facade.handlers;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import pt.tooyummytogo.exceptions.ProductNotFoundException;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
 public class ColocarProdutoHandler {
@@ -17,7 +18,7 @@ public class ColocarProdutoHandler {
 		return this.currentMerchant.getProductsStringList();
 	}
 
-	public void indicaProduto(String tp, int quantity) {
+	public void indicaProduto(String tp, int quantity) throws ProductNotFoundException {
 		this.currentMerchant.indicaProduto(tp, quantity);
 	}
 

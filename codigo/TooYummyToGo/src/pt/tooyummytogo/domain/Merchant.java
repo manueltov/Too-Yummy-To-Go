@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pt.tooyummytogo.exceptions.ProductAlreadyExistsException;
+import pt.tooyummytogo.exceptions.ProductNotFoundException;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
 
@@ -35,10 +36,14 @@ public class Merchant {
 	}
 
 	public int addProductType(String tp, double price) throws ProductAlreadyExistsException {
-		if (lstProducts.contains(getProduct(tp)))
-			throw new ProductAlreadyExistsException();
-		this.lstProducts.add(new Product(tp, price));
-		return lstProducts.size() - 1;
+		try {
+			if (lstProducts.contains(getProduct(tp)))
+				throw new ProductAlreadyExistsException();
+		} catch (ProductNotFoundException e) {
+			this.lstProducts.add(new Product(tp, price));
+			return lstProducts.size() - 1;
+		}
+		return 0;
 	}
 
 	public List<String> getProductsStringList() {
@@ -49,21 +54,16 @@ public class Merchant {
 		return aux;
 	}
 
-	public Product getProduct(String tp) {
-
-		try {
-			for (Product prdt : lstProducts) {
-				if (prdt.getProductType().equals(tp))
-					return prdt;
-			}
-		} catch (Exception e) {
-			System.err.println("Error: Product not found.");
+	public Product getProduct(String tp) throws ProductNotFoundException {
+		for (Product prdt : lstProducts) {
+			if (prdt.getProductType().equals(tp))
+				return prdt;
 		}
-		return null;
+		throw new ProductNotFoundException();
 	}
 
-	public void indicaProduto(String tp, int quantity) {
-		this.productsForSale.addProductForSale(getProduct(tp), quantity); // if tp doenst exist make exception
+	public void indicaProduto(String tp, int quantity) throws ProductNotFoundException {
+		this.productsForSale.addProductForSale(getProduct(tp), quantity);
 	}
 
 	public ProductsForSale getProductsForSale() {

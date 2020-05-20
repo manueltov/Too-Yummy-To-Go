@@ -31,19 +31,19 @@ public class EncomendarHandler {
 	}
 
 	public List<ComercianteInfo> indicaLocalizacaoActual(PosicaoCoordenadas coordinates) {
-		SearchPorDefault s = new SearchPorDefault();
+		SearchPorDefaultStrategy s = new SearchPorDefaultStrategy();
 		this.coordinates = coordinates;
 		return s.indicaLocalizacaoActual(coordinates);
 	}
 
 	public List<ComercianteInfo> redefineRaio(int i) {
-		SearchPorRaio s = new SearchPorRaio();
+		SearchPorRaioStrategy s = new SearchPorRaioStrategy();
 		Float raio = (float) i;
 		return s.redefineRaio(raio,this.coordinates);
 	}
 
 	public List<ComercianteInfo> redefinePeriodo(LocalDateTime start, LocalDateTime end) {
-		SearchPorPeriodo s = new SearchPorPeriodo();
+		SearchPorPeriodoStrategy s = new SearchPorPeriodoStrategy();
 		return s.redefinePeriodo(start,end,this.coordinates);
 	}
 

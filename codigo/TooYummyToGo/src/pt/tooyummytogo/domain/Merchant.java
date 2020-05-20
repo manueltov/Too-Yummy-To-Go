@@ -93,7 +93,7 @@ public class Merchant {
 
 	public void addDelivery(String codigoReserva) {
 		this.deliveries.add(codigoReserva);
-		System.out.println("Reserva: "+codigoReserva+" adicionada ao comerciante à lista de"+this.username);
+		//System.out.println("Reserva: "+codigoReserva+" adicionada ao comerciante à lista de "+this.username);
 	}
 	
 }

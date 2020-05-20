@@ -7,8 +7,14 @@ import pt.tooyummytogo.exceptions.NoMerchantInAreaException;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
-
 public interface SearchStrategy {
-    public List<ComercianteInfo> escolheMerchant(LocalDateTime horaInicio,LocalDateTime horaFim,Float raio,PosicaoCoordenadas coordinates) throws NoMerchantInAreaException;
-    
+
+	public LocalDateTime horaInicio = LocalDateTime.now();
+	public LocalDateTime horaFim = horaInicio.plusHours(1);
+	public Float raio = 5000f;
+	public final PosicaoCoordenadas coordinates = null;
+
+	public List<ComercianteInfo> escolheMerchant(LocalDateTime horaInicio, LocalDateTime horaFim, Float raio,
+			PosicaoCoordenadas coordinates) throws NoMerchantInAreaException;
+
 }

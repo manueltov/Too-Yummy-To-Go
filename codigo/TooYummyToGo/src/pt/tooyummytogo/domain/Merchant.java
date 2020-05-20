@@ -15,6 +15,7 @@ public class Merchant {
 	private PosicaoCoordenadas posi;
 	private List<Product> lstProducts;
 	private ProductsForSale productsForSale;
+	private List<String> deliveries; 
 	
 	public Merchant(String username, String password, PosicaoCoordenadas posi) {
 		this.username = username;
@@ -22,6 +23,7 @@ public class Merchant {
 		this.posi = posi;
 		this.lstProducts = new ArrayList<Product>();
 		this.productsForSale = new ProductsForSale();
+		this.deliveries = new ArrayList<String>();
 	}
 
 	public String getUsername() {
@@ -87,6 +89,11 @@ public class Merchant {
 
 	public boolean hasProductsForSale() {
 		return productsForSale.hasProductsForSale();
+	}
+
+	public void addDelivery(String codigoReserva) {
+		this.deliveries.add(codigoReserva);
+		System.out.println("Reserva: "+codigoReserva+" adicionada ao comerciante à lista de"+this.username);
 	}
 	
 }

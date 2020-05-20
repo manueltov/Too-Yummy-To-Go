@@ -13,6 +13,7 @@ import pt.tooyummytogo.domain.User;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 import pt.tooyummytogo.facade.dto.ProdutoInfo;
+import pt.tooyummytogo.facade.utils.observers.Observable;
 import pt.tooyummytogo.facade.utils.strategies.*;
 
 
@@ -83,6 +84,11 @@ public class EncomendarHandler {
 		
 		String codigoReserva = delivery.generateCode();
 		
+		//evento de notificaçao
+		Observable obs = new Observable();
+		obs.notificar(codigoReserva,this.merchInfo);
+		//
+
 		return codigoReserva;
 	}
 

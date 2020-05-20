@@ -62,4 +62,8 @@ public class ComercianteInfo {
 		return "[ Comerciante: " + getUsername() + " ]";
 	}
 
+	public void addDelivery(String codigoReserva) {
+		this.merch.addDelivery(codigoReserva);
+	}
+
 }

@@ -7,14 +7,25 @@ public class Order {
 
 	private List<ProductInSale> lstOrderProducts;
 
+	/**
+	 * Constructor fo Order
+	 */
 	public Order() {
 		this.lstOrderProducts = new ArrayList<ProductInSale>();
 	}
 
+	/**
+	 * 
+	 * @param productToAdd to Order
+	 */
 	public void addProductToOrder(ProductInSale productToAdd) {
 		this.lstOrderProducts.add(productToAdd);
 	}
 
+	/**
+	 * 
+	 * @return total price value in current order
+	 */
 	public double getTotal() {
 		double total = 0;
 		for (ProductInSale productInSale : this.lstOrderProducts) {

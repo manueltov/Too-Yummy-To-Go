@@ -8,6 +8,7 @@ public class MonsterCardAdapter implements PaymentAdapter {
 	private Card card;
 	private MonsterCardAPI monsterCard;
 
+	/**Constructor of payment */
 	public MonsterCardAdapter() {
 		this.monsterCard = new MonsterCardAPI();
 	}

@@ -12,7 +12,7 @@ public class MerchantCatalog {
 
 	private static List<Merchant> merchantCat;
 
-	/**Constructor of merchant Catalog */
+	/** Constructor of merchant Catalog */
 	public MerchantCatalog() {
 		merchantCat = new ArrayList<>();
 	}
@@ -33,7 +33,7 @@ public class MerchantCatalog {
 	 * 
 	 * @param username
 	 * @param password
-	 * @param posi Local Coordinates of the merchant's business
+	 * @param posi     Local Coordinates of the merchant's business
 	 * @throws MerchantAlreadyExistsException
 	 */
 	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi)

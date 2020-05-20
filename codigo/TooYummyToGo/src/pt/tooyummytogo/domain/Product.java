@@ -1,22 +1,41 @@
 package pt.tooyummytogo.domain;
 
+/**
+ * Product object is a product that the merchant has a merchant can have a
+ * product object created or many of them but they can be only registered in the
+ * merchant but not used to sale
+ * 
+ */
 public class Product {
 	private String productType;
 	private double price;
 
+	/**
+	 * Constructor of Product
+	 * 
+	 * @param tp
+	 * @param p
+	 */
 	public Product(String tp, double p) {
 		this.productType = tp;
 		this.price = p;
 	}
 
+	/**
+	 * Get product type
+	 * 
+	 * @return product type
+	 */
 	public String getProductType() {
 		return productType;
 	}
 
+	@Override
 	public String toString() {
 		return getProductType();
 	}
 
+	@Override
 	public Product clone() {
 		return new Product(this.productType, this.price);
 	}
@@ -51,6 +70,11 @@ public class Product {
 		return true;
 	}
 
+	/**
+	 * Get the price of the product
+	 * 
+	 * @return the price
+	 */
 	public double getPrice() {
 		return this.price;
 	}

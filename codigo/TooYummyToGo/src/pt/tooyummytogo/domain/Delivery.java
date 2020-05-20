@@ -5,7 +5,6 @@ import java.math.RoundingMode;
 
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
-
 public class Delivery {
 
 	private User user;
@@ -15,9 +14,10 @@ public class Delivery {
 
 	/**
 	 * Constructor of Delivery
-	 * @param user current delivery
+	 * 
+	 * @param user      current delivery
 	 * @param merchInfo chosen merchant
-	 * @param ord order issued by the user to merchInfo
+	 * @param ord       order issued by the user to merchInfo
 	 */
 	public Delivery(User user, ComercianteInfo merchInfo, Order ord) {
 		this.user = user;
@@ -25,6 +25,7 @@ public class Delivery {
 		this.ord = ord;
 		this.isPayed = false;
 	}
+
 	/**
 	 * 
 	 * @return boolean if payment is complete
@@ -40,6 +41,7 @@ public class Delivery {
 	public void setPayed(boolean payed) {
 		this.isPayed = payed;
 	}
+
 	/**
 	 * 
 	 * @return total price in the basket
@@ -47,7 +49,6 @@ public class Delivery {
 	public double totalPrice() {
 		return round(this.ord.getTotal(), 2);
 	}
-
 
 	private static double round(double value, int places) {
 		BigDecimal bd = BigDecimal.valueOf(value);
@@ -57,6 +58,7 @@ public class Delivery {
 
 	/**
 	 * generate hashCode
+	 * 
 	 * @return
 	 */
 	public String generateCode() {

@@ -8,7 +8,7 @@ public class Order {
 	private List<ProductInSale> lstOrderProducts;
 
 	/**
-	 * Constructor fo Order
+	 * Constructor of Order
 	 */
 	public Order() {
 		this.lstOrderProducts = new ArrayList<ProductInSale>();

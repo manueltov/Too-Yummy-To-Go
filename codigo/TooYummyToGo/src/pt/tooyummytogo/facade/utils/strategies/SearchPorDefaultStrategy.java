@@ -21,6 +21,7 @@ public class SearchPorDefaultStrategy implements SearchStrategy {
 		try {
 			return s.searchIt(horaInicio, horaFim, raio, coordinates);
 		} catch (NoMerchantInAreaException e) {
+			System.out.println("uuu");
 			System.err.println("NoMerchantInArea");
 		}
 		return null;

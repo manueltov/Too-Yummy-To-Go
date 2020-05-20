@@ -1,5 +1,8 @@
 package pt.tooyummytogo.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
 public class Delivery {
@@ -25,7 +28,13 @@ public class Delivery {
 	}
 	
 	public double totalPrice() {
-		return this.ord.getTotal();
+		return round(this.ord.getTotal(), 2);
+	}
+	 
+	private static double round(double value, int places) {
+	    BigDecimal bd = BigDecimal.valueOf(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
 	}
 
 	public String generateCode() {

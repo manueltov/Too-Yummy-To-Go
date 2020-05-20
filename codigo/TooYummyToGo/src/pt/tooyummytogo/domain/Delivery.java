@@ -6,12 +6,12 @@ import java.math.RoundingMode;
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
 public class Delivery {
-	
+
 	private User user;
 	private ComercianteInfo merchInfo;
 	private Order ord;
 	private boolean isPayed;
-	
+
 	public Delivery(User user, ComercianteInfo merchInfo, Order ord) {
 		this.user = user;
 		this.merchInfo = merchInfo;
@@ -26,19 +26,19 @@ public class Delivery {
 	public void setPayed(boolean payed) {
 		this.isPayed = payed;
 	}
-	
+
 	public double totalPrice() {
 		return round(this.ord.getTotal(), 2);
 	}
-	 
+
 	private static double round(double value, int places) {
-	    BigDecimal bd = BigDecimal.valueOf(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
-	    return bd.doubleValue();
+		BigDecimal bd = BigDecimal.valueOf(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
 	}
 
 	public String generateCode() {
-		return Math.abs(hashCode())+"";
+		return Math.abs(hashCode()) + "";
 	}
 
 	@Override
@@ -50,5 +50,5 @@ public class Delivery {
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
-	
+
 }

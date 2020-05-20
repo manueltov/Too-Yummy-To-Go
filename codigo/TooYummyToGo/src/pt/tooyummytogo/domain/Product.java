@@ -20,7 +20,7 @@ public class Product {
 	public Product clone() {
 		return new Product(this.productType, this.price);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -54,5 +54,5 @@ public class Product {
 	public double getPrice() {
 		return this.price;
 	}
-	
+
 }

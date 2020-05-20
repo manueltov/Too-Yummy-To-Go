@@ -2,7 +2,6 @@ package pt.tooyummytogo.facade.handlers;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Random;
 
 import pt.tooyummytogo.facade.dto.ComercianteInfo;
 

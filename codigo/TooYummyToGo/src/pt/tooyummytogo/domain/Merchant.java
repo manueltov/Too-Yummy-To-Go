@@ -15,8 +15,8 @@ public class Merchant {
 	private PosicaoCoordenadas posi;
 	private List<Product> lstProducts;
 	private ProductsForSale productsForSale;
-	private List<String> deliveries; 
-	
+	private List<String> deliveries;
+
 	public Merchant(String username, String password, PosicaoCoordenadas posi) {
 		this.username = username;
 		this.password = password;
@@ -29,16 +29,16 @@ public class Merchant {
 	public String getUsername() {
 		return username;
 	}
-	
+
 	boolean confirmPassword(String pw) {
 		return this.password.equals(pw);
 	}
 
 	public int addProductType(String tp, double price) throws ProductAlreadyExistsException {
-		if(lstProducts.contains(getProduct(tp)))
+		if (lstProducts.contains(getProduct(tp)))
 			throw new ProductAlreadyExistsException();
 		this.lstProducts.add(new Product(tp, price));
-		return lstProducts.size()-1;
+		return lstProducts.size() - 1;
 	}
 
 	public List<String> getProductsStringList() {
@@ -48,24 +48,24 @@ public class Merchant {
 		}
 		return aux;
 	}
-	
+
 	public Product getProduct(String tp) {
-		
+
 		try {
 			for (Product prdt : lstProducts) {
-				if(prdt.getProductType().equals(tp))
+				if (prdt.getProductType().equals(tp))
 					return prdt;
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.err.println("Error: Product not found.");
 		}
 		return null;
 	}
-	
+
 	public void indicaProduto(String tp, int quantity) {
-		this.productsForSale.addProductForSale(getProduct(tp), quantity); //if tp doenst exist make exception
+		this.productsForSale.addProductForSale(getProduct(tp), quantity); // if tp doenst exist make exception
 	}
-	
+
 	public ProductsForSale getProductsForSale() {
 		return productsForSale;
 	}
@@ -78,7 +78,7 @@ public class Merchant {
 	public PosicaoCoordenadas getCoordinates() {
 		return this.posi;
 	}
-	
+
 	public List<ProdutoInfo> getProductsInfoList() {
 		List<ProdutoInfo> aux = new ArrayList<ProdutoInfo>();
 		for (ProductInSale productInSale : this.productsForSale.getLstProductsForSale()) {
@@ -93,7 +93,8 @@ public class Merchant {
 
 	public void addDelivery(String codigoReserva) {
 		this.deliveries.add(codigoReserva);
-		//System.out.println("Reserva: "+codigoReserva+" adicionada ao comerciante à lista de "+this.username);
+		// System.out.println("Reserva: "+codigoReserva+" adicionada ao comerciante à
+		// lista de "+this.username);
 	}
-	
+
 }

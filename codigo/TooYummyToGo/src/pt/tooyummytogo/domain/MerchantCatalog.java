@@ -9,13 +9,13 @@ import pt.tooyummytogo.facade.dto.ComercianteInfo;
 import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class MerchantCatalog {
-	
+
 	private static List<Merchant> merchantCat;
-	
+
 	public MerchantCatalog() {
 		merchantCat = new ArrayList<>();
 	}
-	
+
 	public static List<ComercianteInfo> getMerchantCatalog() {
 		List<ComercianteInfo> aux = new ArrayList<ComercianteInfo>();
 		for (Merchant merch : merchantCat) {
@@ -24,28 +24,29 @@ public class MerchantCatalog {
 		return aux;
 	}
 
-	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi) throws MerchantAlreadyExistsException {
+	public void adicionaMerchant(String username, String password, PosicaoCoordenadas posi)
+			throws MerchantAlreadyExistsException {
 		if (merchantCat.contains(getMerchant(username))) {
 			throw new MerchantAlreadyExistsException();
 		}
 		merchantCat.add(new Merchant(username, password, posi));
 	}
-	
+
 	public static Merchant getMerchant(String username) {
 		for (Merchant merch : merchantCat) {
-			if(merch.getUsername().equals(username))
+			if (merch.getUsername().equals(username))
 				return merch;
 		}
-		return null; //TODO return exception Merchant does not exist, era melhor
+		return null; // TODO return exception Merchant does not exist, era melhor
 	}
 
 	public Optional<ComercianteInfo> tryLogin(String username, String password) {
 		for (Merchant merchant : merchantCat) {
-			if(merchant.getUsername().equals(username) && merchant.confirmPassword(password)) {
+			if (merchant.getUsername().equals(username) && merchant.confirmPassword(password)) {
 				return Optional.of(new ComercianteInfo(username));
 			}
 		}
 		return Optional.empty();
 	}
-	
+
 }

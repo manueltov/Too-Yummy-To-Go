@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsForSale {
-	
+
 	private List<ProductInSale> lstProductsForSale;
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFim;
-	
+
 	public ProductsForSale() {
 		lstProductsForSale = new ArrayList<ProductInSale>();
 	}
-	
+
 	public void addProductForSale(Product prdt, int quantity) {
 		this.lstProductsForSale.add(new ProductInSale(prdt, quantity));
 	}
@@ -37,15 +37,15 @@ public class ProductsForSale {
 	public List<ProductInSale> getLstProductsForSale() {
 		return lstProductsForSale;
 	}
-	
+
 	public ProductInSale getProductInSale(String prdType) {
 		ProductInSale aux = new ProductInSale(new Product(null, 0), 0);
 		for (ProductInSale productInSale : this.lstProductsForSale) {
-			if(productInSale.getPrdt().getProductType().equals(prdType))
+			if (productInSale.getPrdt().getProductType().equals(prdType))
 				aux = productInSale;
 		}
-		if(aux.getPrdt().getProductType() == null) {
-			//return exception
+		if (aux.getPrdt().getProductType() == null) {
+			// return exception
 		}
 		return aux;
 	}

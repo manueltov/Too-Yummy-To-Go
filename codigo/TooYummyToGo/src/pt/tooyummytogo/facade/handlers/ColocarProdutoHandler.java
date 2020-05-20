@@ -8,8 +8,14 @@ import pt.tooyummytogo.facade.dto.ComercianteInfo;
 
 public class ColocarProdutoHandler {
 
+	// Authenticated merchant
 	private ComercianteInfo currentMerchant;
 
+	/**
+	 * Constructor of ColocarProdutoHandler
+	 * 
+	 * @param currentMerch
+	 */
 	public ColocarProdutoHandler(ComercianteInfo currentMerch) {
 		this.currentMerchant = currentMerch;
 	}

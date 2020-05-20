@@ -18,39 +18,84 @@ import pt.tooyummytogo.facade.utils.strategies.*;
 
 public class EncomendarHandler {
 
+	// Authenticated user
 	private User currentUser;
+
+	// The merchant that will sell things to the authenticated user
 	private ComercianteInfo merchInfo;
+
+	// Order of purchase
 	private Order ord;
+
+	// Delivery to purchase
 	private Delivery delivery;
+
+	// Coordinates of the user
 	private PosicaoCoordenadas coordinates;
 
+	/**
+	 * Constructor of EncomendarHandler
+	 * 
+	 * @param currentUser
+	 */
 	public EncomendarHandler(User currentUser) {
 		this.currentUser = currentUser;
 		ord = this.currentUser.createOrder();
 	}
 
+	/**
+	 * Search for merchants based in location
+	 * 
+	 * @param coordinates
+	 * @return list of merchants of the search
+	 */
 	public List<ComercianteInfo> indicaLocalizacaoActual(PosicaoCoordenadas coordinates) {
 		SearchPorDefaultStrategy s = new SearchPorDefaultStrategy();
 		this.coordinates = coordinates;
 		return s.indicaLocalizacaoActual(coordinates);
 	}
 
+	/**
+	 * Search for merchants giving a range
+	 * 
+	 * @param i - range
+	 * @return list of merchants of the search
+	 */
 	public List<ComercianteInfo> redefineRaio(int i) {
 		SearchPorRaioStrategy s = new SearchPorRaioStrategy();
 		Float raio = (float) i;
 		return s.redefineRaio(raio, this.coordinates);
 	}
 
+	/**
+	 * Search for merchants giving a time period
+	 * 
+	 * @param start
+	 * @param end
+	 * @return list of merchants of the search
+	 */
 	public List<ComercianteInfo> redefinePeriodo(LocalDateTime start, LocalDateTime end) {
 		SearchPorPeriodoStrategy s = new SearchPorPeriodoStrategy();
 		return s.redefinePeriodo(start, end, this.coordinates);
 	}
 
+	/**
+	 * Choose merchant to shop
+	 * 
+	 * @param comercianteInfo
+	 * @return list of products of the selected merch
+	 */
 	public List<ProdutoInfo> escolheComerciante(ComercianteInfo comercianteInfo) {
 		this.merchInfo = comercianteInfo;
 		return comercianteInfo.escolheComerciante();
 	}
 
+	/**
+	 * Choose product to add to order
+	 * 
+	 * @param prd      - product to add
+	 * @param quantity - quantity of products of this type to add to order
+	 */
 	public void indicaProduto(ProdutoInfo prd, int quantity) {
 		ProductInSale prdInSale = this.merchInfo.getProductsForSale().getProductInSale(prd.getProductType());
 		if (prdInSale.getQuantity() >= quantity) {
@@ -63,6 +108,14 @@ public class EncomendarHandler {
 		}
 	}
 
+	/**
+	 * Make payment
+	 * 
+	 * @param cardNumber - Number of the credit card
+	 * @param monthYear  - expire date of credit card "MM/YY"
+	 * @param ccv        - CCV code of the card
+	 * @return code of the delivery
+	 */
 	public String indicaPagamento(String cardNumber, String monthYear, String ccv) {
 
 		// Delivery

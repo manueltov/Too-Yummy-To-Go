@@ -6,8 +6,16 @@ import pt.tooyummytogo.facade.dto.PosicaoCoordenadas;
 
 public class RegistarComercianteHandler {
 
+	/**
+	 * MerchantCatalog - Merchants Catalog
+	 */
 	private MerchantCatalog merchCat;
 
+	/**
+	 * Constructor of RegistarComercianteHandler
+	 * 
+	 * @param merchCat
+	 */
 	public RegistarComercianteHandler(MerchantCatalog merchCat) {
 		this.merchCat = merchCat;
 	}

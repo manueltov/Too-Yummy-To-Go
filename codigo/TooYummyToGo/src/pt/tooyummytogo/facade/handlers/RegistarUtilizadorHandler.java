@@ -5,8 +5,16 @@ import pt.tooyummytogo.exceptions.UserAlreadyExistsException;
 
 public class RegistarUtilizadorHandler {
 
+	/*
+	 * UserCatalog - Users Catalog
+	 */
 	private UserCatalog userCat;
 
+	/**
+	 * Constructor of RegistarUtilizadorHandler
+	 * 
+	 * @param userCat
+	 */
 	public RegistarUtilizadorHandler(UserCatalog userCat) {
 		this.userCat = userCat;
 	}
